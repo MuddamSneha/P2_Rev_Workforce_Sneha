@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <nav th:fragment="navbar" class="top-navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="/dashboard" class="nav-logo">RevWorkForce</a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+
+                <!-- Admin Only Links -->
+                <li th:if="${userEmployee != null and userEmployee.role == 'ROLE_ADMIN'}">
+                    <a href="/admin/employees" class="nav-link">Employees</a>
+                </li>
+                <li th:if="${userEmployee != null and userEmployee.role == 'ROLE_ADMIN'}">
+                    <a href="/admin/config/departments" class="nav-link">Departments</a>
+                </li>
+
+                <!-- Leaves Links -->
+                <li th:if="${userEmployee != null and userEmployee.role == 'ROLE_MANAGER'}">
+                    <a href="/manager/leaves" class="nav-link">Team Leaves</a>
+                </li>
+                <li><a href="/leaves" class="nav-link"
+                        th:text="${userEmployee != null and userEmployee.role == 'ROLE_MANAGER' ? 'My Leaves' : 'Leaves'}">Leaves</a>
+                </li>
+
+                <li th:if="${userEmployee != null and userEmployee.role == 'ROLE_MANAGER'}">
+                    <a href="/manager/team" class="nav-link">My Team</a>
+                </li>
+
+                <!-- Dropdowns for Admin extra configs -->
+                <li th:if="${userEmployee != null and userEmployee.role == 'ROLE_ADMIN'}" class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Reports <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="/admin/reports/employees">Employee Reports</a>
+                        <a href="/admin/reports/leaves">Leave Reports</a>
+                    </div>
+                </li>
+
+                <li th:if="${userEmployee != null and userEmployee.role == 'ROLE_ADMIN'}" class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Admin Tools <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="/admin/config/designations">Designations</a>
+                        <a href="/admin/config/announcements">Announcements</a>
+                        <a href="/admin/config/logs">Activity Logs</a>
+                    </div>
+                </li>
+
+                <!-- Performance Links -->
+                <li th:if="${userEmployee != null and userEmployee.role == 'ROLE_MANAGER'}">
+                    <a href="/manager/performance" class="nav-link">Team Performance</a>
+                </li>
+                <li><a href="/performance" class="nav-link"
+                        th:text="${userEmployee != null and userEmployee.role == 'ROLE_MANAGER' ? 'My Performance' : 'Performance'}">Performance</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <a href="/notifications" class="nav-icon" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span th:if="${notificationCount != null and notificationCount > 0}" class="nav-badge"
+                        th:text="${notificationCount}">0</span>
+                </a>
+
+                <div class="profile-dropdown">
+                    <div class="profile-trigger">
+                        <span class="profile-avatar"
+                            th:text="${userEmployee != null ? userEmployee.firstName.substring(0,1) + userEmployee.lastName.substring(0,1) : 'U'}">U</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="profile-menu">
+                        <div class="profile-header">
+                            <p class="name"
+                                th:text="${userEmployee != null ? userEmployee.firstName + ' ' + userEmployee.lastName : 'User'}">
+                                User Name</p>
+                            <p class="role" th:text="${userEmployee != null ? userEmployee.role : 'Role'}">Employee</p>
+                        </div>
+                        <a href="/profile"><i class="fas fa-user-circle"></i> My Profile</a>
+                        <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <style>
+            .top-navbar {
+                background: #ffffff;
+                height: 70px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                padding: 0 5%;
+            }
+
+            .nav-container {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .nav-logo {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #4f46e5;
+                text-decoration: none;
+                letter-spacing: -0.5px;
+            }
+
+            .nav-menu {
+                display: flex;
+                list-style: none;
+                gap: 1.5rem;
+            }
+
+            .nav-link {
+                text-decoration: none;
+                color: #64748b;
+                font-weight: 500;
+                font-size: 0.9rem;
+                transition: all 0.3s;
+                padding: 0.5rem 0;
+                position: relative;
+            }
+
+            .nav-link:hover {
+                color: #4f46e5;
+            }
+
+            .nav-right {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .nav-icon {
+                color: #64748b;
+                font-size: 1.2rem;
+                position: relative;
+                text-decoration: none;
+            }
+
+            .nav-badge {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background: #ef4444;
+                color: white;
+                font-size: 10px;
+                padding: 2px 5px;
+                border-radius: 10px;
+                font-weight: 700;
+                border: 2px solid white;
+            }
+
+            .profile-dropdown {
+                position: relative;
+                cursor: pointer;
+            }
+
+            .profile-trigger {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: #64748b;
+            }
+
+            .profile-avatar {
+                width: 38px;
+                height: 38px;
+                background: #e0e7ff;
+                color: #4f46e5;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 600;
+            }
+
+            .profile-menu {
+                position: absolute;
+                top: 50px;
+                right: 0;
+                background: white;
+                width: 200px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                border-radius: 12px;
+                padding: 10px 0;
+                display: none;
+                z-index: 1001;
+            }
+
+            .profile-menu.show {
+                display: block;
+            }
+
+            .profile-header {
+                padding: 10px 20px;
+                border-bottom: 1px solid #f1f5f9;
+                margin-bottom: 5px;
+            }
+
+            .profile-header .name {
+                font-weight: 600;
+                font-size: 0.9rem;
+                color: #1e293b;
+            }
+
+            .profile-header .role {
+                font-size: 0.8rem;
+                color: #94a3b8;
+            }
+
+            .profile-menu a {
+                display: block;
+                padding: 10px 20px;
+                color: #64748b;
+                text-decoration: none;
+                font-size: 0.9rem;
+            }
+
+            .profile-menu a:hover {
+                background: #f8fafc;
+                color: #4f46e5;
+            }
+
+            .nav-dropdown {
+                position: relative;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: white;
+                width: 180px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                padding: 8px 0;
+                display: none;
+                z-index: 1001;
+            }
+
+            .nav-dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                display: block;
+                padding: 8px 16px;
+                color: #64748b;
+                text-decoration: none;
+                font-size: 0.85rem;
+            }
+
+            .dropdown-menu a:hover {
+                background: #f8fafc;
+                color: #4f46e5;
+            }
+
+            .nav-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: #64748b;
+                cursor: pointer;
+            }
+
+            @media (max-width: 1024px) {
+                .nav-menu {
+                    display: none;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 70px;
+                    left: 0;
+                    right: 0;
+                    background: white;
+                    padding: 20px;
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                }
+
+                .nav-menu.show {
+                    display: flex;
+                }
+
+                .nav-toggle {
+                    display: block;
+                }
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const profileTrigger = document.querySelector('.profile-trigger');
+                const profileMenu = document.querySelector('.profile-menu');
+                const navToggle = document.getElementById('navToggle');
+                const navMenu = document.querySelector('.nav-menu');
+
+                if (profileTrigger) {
+                    profileTrigger.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        profileMenu.classList.toggle('show');
+                    });
+                }
+
+                if (navToggle) {
+                    navToggle.addEventListener('click', () => {
+                        navMenu.classList.toggle('show');
+                    });
+                }
+
+                document.addEventListener('click', () => {
+                    if (profileMenu) profileMenu.classList.remove('show');
+                });
+            });
+        </script>
+    </nav>
+</body>
+
+</html>

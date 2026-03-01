@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('System Activity Logs')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1 class="page-title">System Activity Logs</h1>
+            <div class="text-muted" style="font-size: 0.875rem;">
+                <i class="fas fa-history"></i> Track all administrative and system actions
+            </div>
+        </header>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 200px;">Timestamp</th>
+                        <th style="width: 200px;">User</th>
+                        <th style="width: 180px;">Action</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="log : ${logs}">
+                        <td style="color: var(--text-muted); font-family: monospace;"
+                            th:text="${#temporals.format(log.timestamp, 'yyyy-MM-dd HH:mm:ss')}">
+                            2023-10-12 10:00:00
+                        </td>
+                        <td>
+                            <div style="font-weight: 500; color: var(--text-dark);"
+                                th:text="${log.performedBy != null ? log.performedBy.firstName + ' ' + log.performedBy.lastName : 'System'}">
+                                Admin User
+                            </div>
+                            <div th:if="${log.performedBy != null}"
+                                style="font-size: 0.75rem; color: var(--text-muted);"
+                                th:text="${log.performedBy.empId}">EMP001</div>
+                        </td>
+                        <td>
+                            <span class="badge"
+                                th:classappend="${log.action.startsWith('CREATE') ? 'badge-success' : (log.action.startsWith('DELETE') ? 'badge-danger' : 'badge-warning')}"
+                                th:text="${log.action}"
+                                style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.02em;">
+                                CREATE_ANNOUNCEMENT
+                            </span>
+                        </td>
+                        <td th:text="${log.details}" style="line-height: 1.5; color: var(--text-dark);">
+                            Created announcement: Welcome!
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div th:if="${#lists.isEmpty(logs)}" style="padding: 4rem; text-align: center; color: var(--text-muted);">
+                <i class="fas fa-clipboard-list" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.2;"></i>
+                <p>No activity logs found yet.</p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Performance Review Feedback')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">Performance Review Feedback</h1>
+                <p class="page-subtitle">Evaluate and provide constructive feedback for your team members</p>
+            </div>
+            <a href="/manager/performance" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </header>
+
+        <div class="card" style="padding: 2.5rem; margin-bottom: 3rem;">
+            <div
+                style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);">
+                <div>
+                    <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-dark);"
+                        th:text="${review.employeeName}">Employee Name</h2>
+                    <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">
+                        <i class="fas fa-calendar-check" style="margin-right: 0.25rem;"></i>
+                        <span th:text="'Annual Performance Review - ' + ${review.reviewYear}">Review Year</span>
+                    </div>
+                </div>
+                <div style="text-align: right; min-width: 120px;">
+                    <div
+                        style="font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        Self Rating</div>
+                    <div class="badge"
+                        style="background: var(--primary-light); color: var(--primary); font-size: 1.25rem; font-weight: 700; padding: 0.5rem 1rem;"
+                        th:text="${review.selfRating}">4.0</div>
+                </div>
+            </div>
+
+            <!-- Responsive Grid for Employee Self-Evaluation -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <div class="form-section">
+                    <label class="form-label"
+                        style="display: flex; align-items: center; gap: 0.5rem; font-weight: 700; margin-bottom: 1rem;">
+                        <i class="fas fa-tasks" style="color: var(--primary);"></i> Key Deliverables
+                    </label>
+                    <div style="background: var(--bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--primary); font-size: 0.95rem; line-height: 1.6; color: var(--text-dark);"
+                        th:text="${review.keyDeliverables}">key deliverables...</div>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label"
+                        style="display: flex; align-items: center; gap: 0.5rem; font-weight: 700; margin-bottom: 1rem;">
+                        <i class="fas fa-award" style="color: var(--secondary);"></i> Significant Accomplishments
+                    </label>
+                    <div style="background: var(--bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--secondary); font-size: 0.95rem; line-height: 1.6; color: var(--text-dark);"
+                        th:text="${review.achievements}">employee achievements...</div>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label"
+                        style="display: flex; align-items: center; gap: 0.5rem; font-weight: 700; margin-bottom: 1rem;">
+                        <i class="fas fa-chart-line" style="color: #f59e0b;"></i> Areas for Improvement
+                    </label>
+                    <div style="background: var(--bg); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #f59e0b; font-size: 0.95rem; line-height: 1.6; color: var(--text-dark);"
+                        th:text="${review.improvements}">employee improvement areas...</div>
+                </div>
+            </div>
+
+            <!-- Manager Action: PENDING SUBMISSION -->
+            <div th:if="${review.status == 'SUBMITTED'}"
+                style="background: #f8fafc; padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border);">
+                <form th:action="@{/manager/performance/review}" method="post">
+                    <input type="hidden" name="reviewId" th:value="${review.reviewId}">
+
+                    <div style="margin-bottom: 2.5rem;">
+                        <label class="form-label" style="margin-bottom: 1.25rem; font-weight: 700;">Performance Rating
+                            (1-5)</label>
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <label th:each="r : ${#numbers.sequence(1, 5)}" class="rating-choice">
+                                <input type="radio" name="rating" th:value="${r + '.0'}" required
+                                    style="display: none;">
+                                <div class="rating-box">
+                                    <span class="rating-num" th:text="${r}">1</span>
+                                    <span class="rating-text"
+                                        th:text="${r == 1 ? 'Needs Work' : r == 2 ? 'Developing' : r == 3 ? 'Good' : r == 4 ? 'Excellent' : 'Outstanding'}">Rating
+                                        Label</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-section" style="margin-bottom: 2rem;">
+                        <label class="form-label" style="font-weight: 700; margin-bottom: 1rem;">Detailed Manager
+                            Feedback</label>
+                        <textarea name="feedback"
+                            placeholder="Provide constructive feedback on technical skills, impact, and growth areas..."
+                            required
+                            style="min-height: 200px; padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border); font-size: 0.95rem; line-height: 1.6; width: 100%;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        style="width: 100%; padding: 1rem; font-size: 1rem; font-weight: 700; border-radius: 12px; justify-content: center;">
+                        <i class="fas fa-check-circle"></i> Submit Official Review
+                    </button>
+                </form>
+            </div>
+
+            <!-- Manager Feedback: VIEWING COMPLETED -->
+            <div th:if="${review.status == 'REVIEWED'}"
+                style="background: #f8fafc; padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border);">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+                    <h3 style="font-weight: 700; color: var(--text-dark); margin: 0;">Manager's Evaluation</h3>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <span class="text-muted" style="font-size: 0.875rem; font-weight: 600;">Official Rating:</span>
+                        <span class="badge"
+                            style="background: var(--primary); color: white; font-size: 1.125rem; font-weight: 700; padding: 0.4rem 1rem;"
+                            th:text="${review.managerRating}">4.5</span>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <label class="form-label" style="font-weight: 700; margin-bottom: 1rem;">Detailed Feedback</label>
+                    <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); font-size: 0.95rem; line-height: 1.6; color: var(--text-dark);"
+                        th:text="${review.managerFeedback}">manager feedback...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        .rating-choice {
+            flex: 1;
+            min-width: 100px;
+            cursor: pointer;
+        }
+
+        .rating-box {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 0.5rem;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rating-num {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .rating-text {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input:checked+.rating-box {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1);
+        }
+
+        input:checked+.rating-box .rating-num,
+        input:checked+.rating-box .rating-text {
+            color: var(--primary);
+        }
+
+        @media (max-width: 480px) {
+            .rating-choice {
+                min-width: calc(50% - 0.5rem);
+            }
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Manager Login')}"></head>
+
+<body
+    style="background: linear-gradient(135deg, #0f172a 0%, #0369a1 100%); margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-y: auto;">
+    <div style="width: 100%; max-width: 450px; padding: 2rem;">
+        <div
+            style="background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-radius: 24px; padding: 3rem; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);">
+            <header style="text-align: center; margin-bottom: 2.5rem;">
+                <div
+                    style="width: 70px; height: 70px; background: #0ea5e9; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.5rem; box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);">
+                    <i class="fas fa-users-gear"></i>
+                </div>
+                <h1 style="color: white; font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem;">Manager Hub</h1>
+                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Empower your team brilliance</p>
+            </header>
+
+            <form th:action="@{/login}" method="post" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <input type="hidden" name="portalRole" th:value="${portalRole}">
+                <div th:if="${param.error}"
+                    style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.3); color: white; padding: 1rem; border-radius: 12px; font-size: 0.85rem; text-align: center;">
+                    Invalid manager credentials.
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; color: white; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.5rem;">Management
+                        Email</label>
+                    <input type="email" name="username" required placeholder="manager@revworkforce.com"
+                        style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; color: white; outline: none; transition: all 0.3s;">
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; color: white; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.5rem;">Portal
+                        Password</label>
+                    <input type="password" name="password" required placeholder="Enter password"
+                        style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; color: white; outline: none; transition: all 0.3s;">
+                </div>
+
+                <button type="submit"
+                    style="width: 100%; padding: 1.1rem; background: #0ea5e9; border: none; border-radius: 50px; color: white; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s; margin-top: 1rem; letter-spacing: 0.5px;">
+                    SIGN INTO HUB
+                </button>
+
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="/" style="color: white; text-decoration: none; font-size: 0.9rem; opacity: 0.6;">
+                        <i class="fas fa-chevron-left"></i> Selection Screen
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

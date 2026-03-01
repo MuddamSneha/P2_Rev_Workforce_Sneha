@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <!-- 
+        Reusable Pagination Fragment 
+        Requires:
+        - page: The Spring Data Page<T> object
+        - baseUrl: The URL base to append ?page=X&size=Y&sort=Z to
+        - sortParams: Any existing sort parameters e.g., 'createdAt,desc' or just 'createdAt' (optional)
+        - extraParams: Any additional filter params e.g., '&search=foo&status=PENDING' (optional)
+    -->
+    <div th:fragment="pagination(page, baseUrl, sortParams, extraParams)" class="pagination-container"
+        th:if="${page.totalPages > 1}"
+        style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 8px; border: 1px solid var(--border);">
+        <div class="pagination-info" style="font-size: 0.875rem; color: var(--text-muted);">
+            Showing page <span th:text="${page.number + 1}" style="font-weight: 600; color: var(--text-dark);">1</span>
+            of <span th:text="${page.totalPages}" style="font-weight: 600; color: var(--text-dark);">10</span>
+            (<span th:text="${page.totalElements}">100</span> total records)
+        </div>
+        <div class="pagination-controls" style="display: flex; gap: 0.5rem;">
+            <!-- Previous Button -->
+            <a th:href="@{${baseUrl}(page=${page.number - 1}, size=${page.size}, sort=${sortParams != null ? sortParams : ''})} + (${extraParams != null ? extraParams : ''})"
+                th:class="${page.first} ? 'btn btn-secondary disabled' : 'btn btn-secondary'"
+                th:style="${page.first} ? 'pointer-events: none; opacity: 0.5;' : ''"
+                style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+                <i class="fas fa-chevron-left"></i> Previous
+            </a>
+
+            <!-- Page Numbers -->
+            <th:block th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+                <a th:if="${i >= page.number - 2 and i <= page.number + 2}"
+                    th:href="@{${baseUrl}(page=${i}, size=${page.size}, sort=${sortParams != null ? sortParams : ''})} + (${extraParams != null ? extraParams : ''})"
+                    th:text="${i + 1}" class="btn"
+                    th:classappend="${page.number == i} ? 'btn-primary' : 'btn-secondary'"
+                    style="padding: 0.4rem 0.8rem; font-size: 0.85rem; min-width: 35px; text-align: center;">
+                    1
+                </a>
+                <span th:if="${i == page.number - 3 or i == page.number + 3}"
+                    style="padding: 0.4rem 0.2rem; color: var(--text-muted);">...</span>
+            </th:block>
+
+            <!-- Next Button -->
+            <a th:href="@{${baseUrl}(page=${page.number + 1}, size=${page.size}, sort=${sortParams != null ? sortParams : ''})} + (${extraParams != null ? extraParams : ''})"
+                th:class="${page.last} ? 'btn btn-secondary disabled' : 'btn btn-secondary'"
+                th:style="${page.last} ? 'pointer-events: none; opacity: 0.5;' : ''"
+                style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+                Next <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

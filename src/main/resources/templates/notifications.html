@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('My Notifications')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header" style="flex-direction: row; align-items: center; justify-content: space-between;">
+            <div>
+                <h1 class="page-title">Notifications Center</h1>
+                <div class="text-muted" style="font-size: 0.875rem;">
+                    <i class="fas fa-bell"></i> Stay updated with your latest alerts and activities
+                </div>
+            </div>
+            <div th:if="${notificationCount != null and notificationCount > 0}" class="badge"
+                style="background: var(--danger); color: white; padding: 0.5rem 1rem; font-weight: 700;">
+                <span th:text="${notificationCount}">0</span> New
+            </div>
+        </header>
+
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div th:if="${not #lists.isEmpty(notifications)}" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div th:each="note : ${notifications}" class="card notification-card"
+                    style="padding: 1.5rem; display: flex; align-items: center; justify-content: space-between; border-left: 5px solid transparent; transition: var(--transition);"
+                    th:styleappend="${note.isRead == 0} ? 'background: #f8faff; border-left-color: var(--primary);' : 'border-left-color: #e2e8f0; opacity: 0.8;'">
+
+                    <div style="display: flex; gap: 1.5rem; align-items: center; flex: 1;">
+                        <div style="width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"
+                            th:styleappend="${note.isRead == 0} ? 'background: var(--primary-light); color: var(--primary);' : 'background: #f1f5f9; color: var(--text-muted);'">
+                            <i th:class="${note.isRead == 0} ? 'fas fa-envelope-open-text' : 'fas fa-envelope'"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <p style="margin: 0; font-weight: 600; color: var(--text-dark); line-height: 1.5;"
+                                th:text="${note.message}">
+                                Leave request approved
+                            </p>
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem;">
+                                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">
+                                    <i class="far fa-clock" style="margin-right: 0.25rem;"></i>
+                                    <span th:text="${#temporals.format(note.createdAt, 'dd MMM yyyy • HH:mm')}">25 Feb
+                                        2026</span>
+                                </span>
+                                <span th:if="${note.isRead == 0}" class="badge"
+                                    style="font-size: 0.65rem; background: var(--primary); color: white; padding: 0.1rem 0.6rem; text-transform: uppercase;">Unread</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-left: 2rem;">
+                        <form th:if="${note.isRead == 0}"
+                            th:action="@{/notifications/read/{id}(id=${note.notificationId})}" method="post">
+                            <button type="submit" class="btn btn-secondary"
+                                style="background: white; border-color: var(--border); padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 700;">
+                                <i class="fas fa-check" style="margin-right: 0.4rem; color: var(--success);"></i> Mark
+                                Read
+                            </button>
+                        </form>
+                        <div th:if="${note.isRead == 1}" style="color: var(--success); font-size: 0.875rem;">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div th:if="${#lists.isEmpty(notifications)}" class="card"
+                style="padding: 6rem 2rem; text-align: center; border-style: dashed; border-width: 2px;">
+                <div style="font-size: 4rem; color: #e2e8f0; margin-bottom: 2rem;">
+                    <i class="fas fa-bell-slash"></i>
+                </div>
+                <h3 style="color: var(--text-muted); font-weight: 600; font-size: 1.25rem;">All caught up!</h3>
+                <p
+                    style="font-size: 0.875rem; color: var(--text-muted); margin-top: 1rem; max-width: 320px; margin-inline: auto;">
+                    You have no new notifications. We'll let you know when something important happens.
+                </p>
+                <div style="margin-top: 2.5rem;">
+                    <a href="/dashboard" class="btn btn-primary" style="padding: 0.75rem 2.5rem;">
+                        Go to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

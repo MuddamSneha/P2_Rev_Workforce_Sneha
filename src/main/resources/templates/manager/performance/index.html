@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Team Performance Dashboard')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1 class="page-title">Team Performance Dashboard</h1>
+            <div class="text-muted" style="font-size: 0.875rem;">
+                <i class="fas fa-chart-line"></i> Track and evaluate your team's achievements
+            </div>
+        </header>
+
+        <div th:if="${param.success == 'reviewed'}" class="alert alert-success" style="margin-bottom: 2rem;">
+            <i class="fas fa-check-circle"></i> Performance review feedback submitted successfully.
+        </div>
+
+        <!-- Team Performance Reviews -->
+        <section style="margin-bottom: 3rem;">
+            <h2
+                style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                <i class="fas fa-clipboard-list" style="color: var(--primary);"></i> Team Performance Reviews
+            </h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Year</th>
+                            <th>Self Rating</th>
+                            <th>Manager Rating</th>
+                            <th>Status</th>
+                            <th style="text-align: right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="review : ${teamReviews}">
+                            <td>
+                                <div style="font-weight: 600; color: var(--text-dark);"
+                                    th:text="${review.employeeName}">John Doe</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);" th:text="${review.empId}">
+                                    EMP001</div>
+                            </td>
+                            <td th:text="${review.reviewYear}">2026</td>
+                            <td>
+                                <span class="badge"
+                                    style="background: #f1f5f9; color: var(--text-dark); font-weight: 600;"
+                                    th:text="${review.selfRating != null ? review.selfRating + ' / 5.0' : '-'}">4.0 /
+                                    5.0</span>
+                            </td>
+                            <td>
+                                <span class="badge" th:if="${review.managerRating != null}"
+                                    style="background: var(--primary-light); color: var(--primary); font-weight: 600;"
+                                    th:text="${review.managerRating + ' / 5.0'}">4.5 / 5.0</span>
+                                <span th:if="${review.managerRating == null}" class="text-muted">-</span>
+                            </td>
+                            <td>
+                                <span
+                                    th:class="'badge ' + (${review.status == 'REVIEWED' ? 'badge-reviewed' : 'badge-submitted'})"
+                                    th:text="${review.status}"
+                                    th:style="${review.status == 'REVIEWED' ? 'background: #d1fae5; color: #065f46;' : 'background: #fef3c7; color: #92400e;'}">SUBMITTED</span>
+                            </td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                                    <a th:href="@{/manager/performance/review/{id}(id=${review.reviewId})}"
+                                        class="btn btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;"
+                                        th:if="${review.status == 'SUBMITTED'}">
+                                        <i class="fas fa-edit"></i> Review
+                                    </a>
+                                    <a th:href="@{/manager/performance/review/{id}(id=${review.reviewId})}" class="btn"
+                                        style="background: #f1f5f9; color: var(--text-dark); padding: 0.4rem 0.8rem; font-size: 0.8rem;"
+                                        th:if="${review.status == 'REVIEWED'}">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(teamReviews)}">
+                            <td colspan="6" style="text-align: center; padding: 4rem; color: var(--text-muted);">
+                                <i class="fas fa-file-signature"
+                                    style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.1;"></i>
+                                <p>No performance reviews submitted yet.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination Controls -->
+            <div
+                th:replace="~{fragments/pagination :: pagination(page=${page}, baseUrl='/manager/performance', sortParams=null, extraParams='')}">
+            </div>
+        </section>
+
+        <!-- Team Goal Progress -->
+        <section>
+            <h2
+                style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                <i class="fas fa-bullseye" style="color: var(--secondary);"></i> Team Goal Progress
+            </h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Role</th>
+                            <th style="text-align: right;">Goal Management</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="emp : ${team}">
+                            <td>
+                                <div style="font-weight: 600; color: var(--text-dark);"
+                                    th:text="${emp.firstName + ' ' + emp.lastName}">Jane Smith</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);" th:text="${emp.empId}">EMP002
+                                </div>
+                            </td>
+                            <td th:text="${emp.designation}">Developer</td>
+                            <td>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <a th:href="@{/manager/performance/goals/{id}(id=${emp.empId})}" class="btn"
+                                        style="background: white; border: 1px solid var(--border); color: var(--text-dark); padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                                        <i class="fas fa-tasks" style="color: var(--secondary);"></i> Manage Goals
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(team)}">
+                            <td colspan="3" style="text-align: center; padding: 4rem; color: var(--text-muted);">
+                                No reports assigned.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

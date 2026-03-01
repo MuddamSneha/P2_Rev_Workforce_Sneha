@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Manage Designations')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1 class="page-title">Designation Management</h1>
+        </header>
+
+        <div class="card" style="margin-bottom: 2rem;">
+            <div
+                style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                <i class="fas fa-id-badge" style="color: var(--primary);"></i> Add / Edit Designation
+            </div>
+            <form th:action="@{/admin/config/designations/save}" th:object="${newDesignation}" method="post"
+                style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: flex-end;">
+                <input type="hidden" th:field="*{designationId}">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label>Designation Name</label>
+                    <input type="text" th:field="*{designationName}" placeholder="e.g. Software Engineer, Manager"
+                        required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="height: 45px;">
+                    <i class="fas fa-save"></i> Save Designation
+                </button>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <div
+                style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); font-weight: 600; color: var(--text-dark); display: flex; align-items: center; gap: 0.5rem;">
+                <i class="fas fa-list" style="color: var(--primary);"></i> Existing Designations
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 100px;">ID</th>
+                        <th>Designation Name</th>
+                        <th style="width: 150px; text-align: right;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="desg : ${designations}">
+                        <td th:text="${desg.designationId}">1</td>
+                        <td th:text="${desg.designationName}" style="font-weight: 500;">Software Engineer</td>
+                        <td style="text-align: right; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                            <a href="javascript:void(0)" class="text-muted" th:data-id="${desg.designationId}"
+                                th:data-name="${desg.designationName}"
+                                onclick="editDesg(this.getAttribute('data-id'), this.getAttribute('data-name'))"
+                                style="font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: var(--transition);">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a th:href="@{/admin/config/designations/delete/{id}(id=${desg.designationId})}"
+                                style="color: #ef4444; font-size: 0.875rem; text-decoration: none; transition: var(--transition);"
+                                onclick="return confirm('Are you sure you want to delete this designation?')">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        function editDesg(id, name) {
+            document.querySelector('[name="designationId"]').value = id;
+            document.querySelector('[name="designationName"]').value = name;
+            document.querySelector('[name="designationName"]').focus();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <style>
+        .text-muted:hover {
+            color: var(--primary) !important;
+        }
+
+        tr:hover td a[style*="color: #ef4444"]:hover {
+            color: #b91c1c !important;
+        }
+    </style>
+</body>
+
+</html>

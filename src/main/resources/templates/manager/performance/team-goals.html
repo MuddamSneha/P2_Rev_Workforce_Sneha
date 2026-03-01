@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Team Goal Progress')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header" style="flex-direction: row; align-items: center; justify-content: space-between;">
+            <div>
+                <h1 class="page-title" th:text="'Goal Progress: ' + ${employee.firstName + ' ' + employee.lastName}">
+                    Team Member Goals</h1>
+                <div class="text-muted" style="font-size: 0.875rem;">
+                    <i class="fas fa-bullseye"></i> Track progress and provide feedback on individual objectives
+                </div>
+            </div>
+            <a href="/manager/performance" class="btn"
+                style="background: white; border: 1px solid var(--border); color: var(--text-dark);">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </header>
+
+        <div th:if="${param.success == 'commented'}" class="alert alert-success" style="margin-bottom: 2rem;">
+            <i class="fas fa-check-circle"></i> Feedback submitted successfully.
+        </div>
+
+        <div th:if="${#lists.isEmpty(goals)}" class="card"
+            style="text-align: center; padding: 5rem; border-style: dashed;">
+            <i class="fas fa-bullseye" style="font-size: 3rem; margin-bottom: 1.5rem; opacity: 0.2;"></i>
+            <p class="text-muted">This employee hasn't set any goals yet.</p>
+        </div>
+
+        <div th:each="goal : ${goals}" class="card card-hover" style="margin-bottom: 2rem; padding: 2.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
+                <div>
+                    <span th:class="'badge priority-' + ${goal.priority}" th:text="${goal.priority}"
+                        th:style="${goal.priority == 'HIGH' ? 'background: #fee2e2; color: #991b1b;' : goal.priority == 'MEDIUM' ? 'background: #fef3c7; color: #92400e;' : 'background: #dcfce7; color: #166534;'}">MEDIUM</span>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-top: 0.75rem; color: var(--text-dark);"
+                        th:text="${goal.goalDesc}">Goal Description</h3>
+                </div>
+                <div style="text-align: right;">
+                    <div
+                        style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+                        Deadline</div>
+                    <div style="font-weight: 600; color: var(--text-dark);">
+                        <i class="fas fa-calendar-day" style="color: var(--primary); margin-right: 0.25rem;"></i>
+                        <span th:text="${goal.deadline}">2026-12-31</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted);">Current
+                        Progress</span>
+                    <span class="badge"
+                        style="background: var(--primary-light); color: var(--primary); font-weight: 700;"
+                        th:text="${goal.progress + '%'}">45%</span>
+                </div>
+                <div class="progress-container"
+                    style="height: 10px; background: #f1f5f9; border-radius: 5px; overflow: hidden;">
+                    <div class="progress-bar"
+                        th:style="'width: ' + ${goal.progress} + '%; height: 100%; background: var(--primary); border-radius: 5px; transition: width 0.5s ease;'">
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: #f8fafc; border-radius: 12px; margin-bottom: 2rem; border-left: 4px solid var(--secondary);">
+                <i class="fas fa-key" style="color: var(--secondary); margin-top: 0.25rem;"></i>
+                <div>
+                    <div
+                        style="font-size: 0.75rem; font-weight: 700; color: var(--secondary); text-transform: uppercase;">
+                        Success Metric</div>
+                    <div style="font-size: 0.875rem; color: var(--text-dark); line-height: 1.5;"
+                        th:text="${goal.successMetric}">Success Metric Description</div>
+                </div>
+            </div>
+
+            <!-- Manager Feedback Section -->
+            <div style="border-top: 1px solid var(--border); padding-top: 2rem;">
+                <div th:if="${goal.managerComment != null}"
+                    style="margin-bottom: 1.5rem; padding: 1.5rem; background: #e0e7ff33; border-radius: 12px; border: 1px solid #e0e7ff;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-comment-dots" style="color: var(--primary);"></i>
+                        <span
+                            style="font-size: 0.75rem; font-weight: 700; color: var(--primary); text-transform: uppercase;">Manager
+                            Feedback</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-dark); line-height: 1.5;"
+                        th:text="${goal.managerComment}">Feedback content...</p>
+                </div>
+
+                <form th:action="@{/manager/performance/goals/comment}" method="post"
+                    style="display: flex; gap: 0.75rem;">
+                    <input type="hidden" name="goalId" th:value="${goal.goalId}">
+                    <input type="hidden" name="empId" th:value="${employee.empId}">
+                    <div style="flex: 1; position: relative;">
+                        <input type="text" name="comment" placeholder="Provide coaching or feedback..." required
+                            style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 10px; font-size: 0.9rem; transition: all 0.3s; outline: none; background: #fff;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="padding: 0 1.5rem;">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div
+            th:replace="~{fragments/pagination :: pagination(page=${page}, baseUrl='/manager/performance/goals/' + ${employee.empId}, sortParams=null, extraParams='')}">
+        </div>
+    </main>
+
+    <style>
+        input:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+    </style>
+</body>
+
+</html>

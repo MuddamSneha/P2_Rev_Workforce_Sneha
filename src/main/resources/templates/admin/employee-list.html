@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Employee Management')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <div th:if="${param.success}" class="alert alert-success"
+            style="background-color: #f0fdf4; border: 1px solid #dcfce7; color: #15803d; padding: 1rem; border-radius: 0.5rem; margin-bottom: 2rem; font-size: 0.875rem; display: flex; align-items: center; gap: 0.75rem;">
+            <i class="fas fa-check-circle"></i>
+            <span>Employee account has been saved successfully.</span>
+        </div>
+        <header class="page-header">
+            <h1 class="page-title">Employee Management</h1>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <form action="/admin/employees" method="get" class="search-container" style="position: relative;">
+                    <i class="fas fa-search"
+                        style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                    <input type="text" name="search" th:value="${search}" style="padding-left: 2.5rem; width: 350px;"
+                        placeholder="Search by name, ID, dept, or role...">
+                </form>
+                <a href="/admin/employees/add" class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Add Employee
+                </a>
+            </div>
+        </header>
+
+        <div class="table-container">
+            <div th:if="${#lists.isEmpty(employees)}"
+                style="padding: 4rem; text-align: center; color: var(--text-muted);">
+                <i class="fas fa-users-slash" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <p>No employees found matching your criteria.</p>
+            </div>
+
+            <table th:if="${not #lists.isEmpty(employees)}">
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Details</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="emp : ${employees}">
+                        <td>
+                            <div style="font-weight: 600; color: var(--text-dark);"
+                                th:text="${emp.firstName + ' ' + emp.lastName}">John Doe</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);" th:text="${emp.empId}">EMP001
+                            </div>
+                        </td>
+                        <td>
+                            <div style="font-size: 0.875rem;" th:text="${emp.designation}">Senior Developer</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);" th:text="${emp.departmentName}">
+                                Engineering</div>
+                        </td>
+                        <td>
+                            <span th:if="${emp.isActive == 1}" class="badge badge-success">Active</span>
+                            <span th:if="${emp.isActive == 0}" class="badge badge-danger">Inactive</span>
+                        </td>
+                        <td style="display: flex; gap: 0.5rem;">
+                            <a th:href="@{/admin/employees/edit/{id}(id=${emp.empId})}"
+                                style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--border); color: var(--text-muted); transition: var(--transition);"
+                                title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a th:if="${emp.isActive == 1}"
+                                th:href="@{/admin/employees/deactivate/{id}(id=${emp.empId})}"
+                                style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--border); color: #ef4444; transition: var(--transition);"
+                                title="Deactivate"
+                                onclick="return confirm('Are you sure you want to deactivate this account?')">
+                                <i class="fas fa-user-slash"></i>
+                            </a>
+                            <a th:if="${emp.isActive == 0}"
+                                th:href="@{/admin/employees/reactivate/{id}(id=${emp.empId})}"
+                                style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--border); color: #10b981; transition: var(--transition);"
+                                title="Reactivate">
+                                <i class="fas fa-user-check"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Pagination Controls -->
+            <div
+                th:replace="~{fragments/pagination :: pagination(page=${page}, baseUrl='/admin/employees', sortParams=null, extraParams=${search != null ? '&search=' + search : ''})}">
+            </div>
+        </div>
+    </main>
+    <style>
+        tr:hover td a {
+            background: #ffffff;
+            border-color: var(--primary-light) !important;
+            color: var(--primary) !important;
+        }
+
+        tr:hover td a[style*="color: #ef4444"]:hover {
+            background: #fef2f2 !important;
+            color: #ef4444 !important;
+            border-color: #fee2e2 !important;
+        }
+
+        tr:hover td a[style*="color: #10b981"]:hover {
+            background: #f0fdf4 !important;
+            color: #10b981 !important;
+            border-color: #dcfce7 !important;
+        }
+    </style>
+</body>
+
+</html>

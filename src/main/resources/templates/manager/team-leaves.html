@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Team Leave Management')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1 class="page-title">Team Leave Management</h1>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <a href="/manager/leaves/calendar" class="btn"
+                    style="background: white; border: 1px solid var(--border); color: var(--text-dark);">
+                    <i class="fas fa-calendar-alt" style="color: var(--primary);"></i> Team Calendar
+                </a>
+                <div class="text-muted" style="font-size: 0.875rem;">
+                    <i class="fas fa-tasks"></i> Review and manage team absences
+                </div>
+            </div>
+        </header>
+
+        <div th:if="${param.success}" class="alert alert-success" style="margin-bottom: 2rem;">
+            <i class="fas fa-check-circle"></i> Request processed successfully.
+        </div>
+        <div th:if="${param.error == 'comment_required'}" class="alert alert-error" style="margin-bottom: 2rem;">
+            <i class="fas fa-exclamation-circle"></i> Comments are mandatory for rejections.
+        </div>
+
+        <!-- Pending Requests -->
+        <section style="margin-bottom: 3rem;">
+            <h2
+                style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                <i class="fas fa-clock" style="color: #f59e0b;"></i> Pending Team Requests
+            </h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Type</th>
+                            <th>Dates</th>
+                            <th>Reason</th>
+                            <th style="width: 220px; text-align: right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="leave : ${pendingLeaves}">
+                            <td>
+                                <div style="font-weight: 600; color: var(--text-dark);" th:text="${leave.employeeName}">
+                                    John Doe</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);" th:text="${leave.empId}">
+                                    EMP001</div>
+                            </td>
+                            <td>
+                                <span style="font-weight: 500;" th:text="${leave.leaveTypeName}">Casual Leave</span>
+                            </td>
+                            <td>
+                                <div style="font-weight: 500;" th:text="${leave.startDate}">2026-03-01</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);"
+                                    th:text="${'to ' + leave.endDate}">to 2026-03-02</div>
+                            </td>
+                            <td>
+                                <div style="max-width: 250px; font-size: 0.875rem; color: var(--text-muted); line-height: 1.4;"
+                                    th:text="${leave.reason}">Family event</div>
+                            </td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                                    <button class="btn btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;"
+                                        th:onclick="'openModal(\'approve\', ' + ${leave.leaveId} + ')'">
+                                        <i class="fas fa-check"></i> Approve
+                                    </button>
+                                    <button class="btn"
+                                        style="background: #fee2e2; color: #ef4444; padding: 0.4rem 0.8rem; font-size: 0.8rem;"
+                                        th:onclick="'openModal(\'reject\', ' + ${leave.leaveId} + ')'">
+                                        <i class="fas fa-times"></i> Reject
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(pendingLeaves)}">
+                            <td colspan="5" style="text-align: center; padding: 4rem; color: var(--text-muted);">
+                                <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.1;"></i>
+                                <p>No pending requests found.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination Controls -->
+            <div
+                th:replace="~{fragments/pagination :: pagination(page=${pendingPage}, baseUrl='/manager/leaves', sortParams=null, extraParams='')}">
+            </div>
+        </section>
+
+        <!-- Team Leave Balances -->
+        <section>
+            <h2
+                style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                <i class="fas fa-wallet" style="color: var(--primary);"></i> Team Members' Leave Balances
+            </h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th th:each="type : ${leaveTypes}" th:text="${type.leaveName}" style="text-align: center;">
+                                Casual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="emp : ${team}">
+                            <td>
+                                <div style="font-weight: 600; color: var(--text-dark);"
+                                    th:text="${emp.firstName + ' ' + emp.lastName}">Employee Name</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);" th:text="${emp.empId}">EMP001
+                                </div>
+                            </td>
+                            <td th:each="type : ${leaveTypes}" style="text-align: center;">
+                                <span class="badge"
+                                    style="background: var(--primary-light); color: var(--primary); min-width: 60px;"
+                                    th:text="${(teamBalancesMap.get(emp.empId).get(type.leaveTypeId) ?: 0) + ' Days'}">10
+                                    Days</span>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(team)}">
+                            <td th:colspan="${#lists.size(leaveTypes) + 1}"
+                                style="text-align: center; padding: 4rem; color: var(--text-muted);">
+                                No reports assigned.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Approval/Rejection Modal -->
+    <div id="actionModal" class="custom-modal">
+        <div class="modal-content card" style="max-width: 500px; width: 90%; padding: 2.5rem;">
+            <h3 id="modalTitle"
+                style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-dark);">Process
+                Leave Request</h3>
+            <p id="modalSubTitle" style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem;">Add any
+                comments for the employee regarding this decision.</p>
+
+            <form id="actionForm" method="post">
+                <input type="hidden" name="leaveId" id="modalLeaveId">
+                <div class="form-group">
+                    <label>Comments</label>
+                    <textarea name="comment" id="modalComment" rows="4" placeholder="Add your comments here..."
+                        style="min-height: 100px;"></textarea>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem;">
+                    <button type="button" class="btn" style="background: #f1f5f9; color: var(--text-muted);"
+                        onclick="closeModal()">Cancel</button>
+                    <button type="submit" id="submitBtn" class="btn">Confirm Action</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <script>
+        function openModal(action, leaveId) {
+            const modal = document.getElementById('actionModal');
+            const form = document.getElementById('actionForm');
+            const title = document.getElementById('modalTitle');
+            const submitBtn = document.getElementById('submitBtn');
+            const commentArea = document.getElementById('modalComment');
+
+            document.getElementById('modalLeaveId').value = leaveId;
+            form.action = '/manager/leaves/' + action;
+
+            if (action === 'approve') {
+                title.innerText = 'Approve Leave Request';
+                title.style.color = 'var(--primary)';
+                submitBtn.innerText = 'Approve Request';
+                submitBtn.className = 'btn btn-primary';
+                commentArea.placeholder = 'Optional comments for approval...';
+                commentArea.required = false;
+            } else {
+                title.innerText = 'Reject Leave Request';
+                title.style.color = '#ef4444';
+                submitBtn.innerText = 'Reject Request';
+                submitBtn.className = 'btn';
+                submitBtn.style.background = '#ef4444';
+                submitBtn.style.color = 'white';
+                commentArea.placeholder = 'Please provide a reason for rejection (Mandatory)';
+                commentArea.required = true;
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('actionModal').style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById('actionModal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

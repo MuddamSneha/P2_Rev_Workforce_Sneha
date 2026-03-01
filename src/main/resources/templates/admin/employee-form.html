@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${employee.empId != null ? 'Edit Employee' : 'Add Employee'} + ' | RevWorkforce Admin'">Add Employee
+    </title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg: #f8fafc;
+            --sidebar-bg: #0f172a;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #94a3b8;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .nav-item i {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item.active {
+            background-color: var(--primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 2rem 3rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-card {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+            max-width: 900px;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+        }
+
+        .form-section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            color: var(--primary);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 0.875rem;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: #f1f5f9;
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e2e8f0;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-logo">RevWorkforce</div>
+        <nav>
+            <a href="/dashboard" class="nav-item">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="/admin/employees" class="nav-item active">
+                <i class="fas fa-users-cog"></i> Employee Mgmt
+            </a>
+            <a href="/admin/leaves" class="nav-item">
+                <i class="fas fa-calendar-check"></i> Leave reports
+            </a>
+            <a href="/admin/config/departments" class="nav-item">
+                <i class="fas fa-building"></i> Departments
+            </a>
+            <a href="/admin/config/designations" class="nav-item">
+                <i class="fas fa-id-badge"></i> Designations
+            </a>
+            <a href="/admin/config/announcements" class="nav-item">
+                <i class="fas fa-bullhorn"></i> Announcements
+            </a>
+            <a href="/admin/config/logs" class="nav-item">
+                <i class="fas fa-history"></i> Activity Logs
+            </a>
+            <a href="/notifications" class="nav-item" style="position: relative;">
+                <i class="fas fa-bell"></i> Notifications
+                <span th:if="${notificationCount != null and notificationCount > 0}"
+                    style="background-color: #ef4444; color: white; padding: 0.1rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; margin-left: auto;"
+                    th:text="${notificationCount}"></span>
+            </a>
+            <a href="/profile" class="nav-item">
+                <i class="fas fa-user"></i> My Profile
+            </a>
+        </nav>
+        <div style="margin-top: auto;">
+            <a href="/logout" class="nav-item">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1 th:text="${employee.empId != null ? 'Edit Employee' : 'Add New Employee'}">Add Employee</h1>
+            <a href="/admin/employees" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to List
+            </a>
+        </header>
+
+        <form th:action="@{/admin/employees/save}" th:object="${employee}" method="post" class="form-card">
+            <div th:if="${error}" class="alert alert-error"
+                style="background-color: #fef2f2; border: 1px solid #fee2e2; color: #b91c1c; padding: 1rem; border-radius: 0.5rem; margin-bottom: 2rem; font-size: 0.875rem; display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fas fa-exclamation-circle"></i>
+                <span th:text="${error}">Error message</span>
+            </div>
+
+            <div class="form-section">
+                <h3>Personal Information</h3>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" th:field="*{firstName}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" th:field="*{lastName}" required>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" th:field="*{email}" th:readonly="${employee.empId != null}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password (Leave empty for default "Welcome@123")</label>
+                        <input type="password" th:field="*{password}" th:disabled="${employee.empId != null}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text" th:field="*{phone}" required>
+                </div>
+                <div class="form-group">
+                    <label>Residential Address</label>
+                    <textarea th:field="*{address}" rows="2" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Employment Details</h3>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Employee ID</label>
+                        <input type="text" th:field="*{empId}" th:readonly="${employee.empId != null}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Designation</label>
+                        <select th:field="*{designationId}" required>
+                            <option value="">Select Designation</option>
+                            <option th:each="desg : ${designations}" th:value="${desg.designationId}"
+                                th:text="${desg.designationName}">Developer</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Department</label>
+                        <select th:field="*{departmentId}" required>
+                            <option value="">Select Department</option>
+                            <option th:each="dept : ${departments}" th:value="${dept.departmentId}"
+                                th:text="${dept.departmentName}">Engineering</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Joining Date</label>
+                        <input type="date" th:field="*{joiningDate}" required>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Reporting Manager</label>
+                        <select th:field="*{managerId}">
+                            <option value="">No Manager / Self</option>
+                            <option th:each="mgr : ${managers}" th:if="${mgr.empId != employee.empId}"
+                                th:value="${mgr.empId}"
+                                th:text="${mgr.firstName + ' ' + mgr.lastName + ' (' + mgr.empId + ')'}">Manager Name
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Salary</label>
+                        <input type="number" th:field="*{salary}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <select th:field="*{role}" required>
+                        <option value="ROLE_EMPLOYEE">Employee</option>
+                        <option value="ROLE_MANAGER">Manager</option>
+                        <option value="ROLE_ADMIN">Admin</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="reset" class="btn btn-secondary">Reset Form</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Employee
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

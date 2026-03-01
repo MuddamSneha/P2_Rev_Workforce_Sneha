@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Admin Dashboard')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <div class="welcome-box">
+                <h1 class="page-title">
+                    Administrative <span style="color: var(--primary);">Oversight</span> 🛡️
+                </h1>
+                <p class="page-subtitle">
+                    Comprehensive workforce analytics and system configuration
+                </p>
+            </div>
+
+            <div class="badge"
+                style="background: white; border: 1px solid var(--border); padding: 0.6rem 1.25rem; border-radius: 50px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 0.75rem;">
+                <span
+                    style="width: 10px; height: 10px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);"></span>
+                <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-dark);">SYSTEM ADMIN</span>
+            </div>
+        </header>
+
+        <!-- Workforce Stats -->
+        <div th:if="${metrics != null}" class="grid-3" style="margin-bottom: 3rem;">
+            <div class="stat-card card">
+                <div
+                    style="width: 56px; height: 56px; background: var(--primary-light); color: var(--primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div>
+                    <span class="stat-label">Total Employees</span>
+                    <div class="stat-value" th:text="${metrics.totalEmployees}">0</div>
+                </div>
+            </div>
+            <div class="stat-card card">
+                <div
+                    style="width: 56px; height: 56px; background: #ecfdf5; color: #059669; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div>
+                    <span class="stat-label">Active Users</span>
+                    <div class="stat-value" th:text="${metrics.activeEmployees}">0</div>
+                </div>
+            </div>
+            <div class="stat-card card">
+                <div
+                    style="width: 56px; height: 56px; background: #fef3c7; color: #d97706; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div>
+                    <span class="stat-label">Departments</span>
+                    <div class="stat-value" th:text="${metrics.totalDepartments}">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 3rem;">
+            <!-- Leave Overview -->
+            <section class="card">
+                <h2
+                    style="font-size: 1.15rem; font-weight: 700; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="fas fa-calendar-alt" style="color: var(--secondary);"></i> Workforce Availability
+                </h2>
+                <div class="stats-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="stat-card" style="box-shadow: none; background: #f8fafc; border-color: #f1f5f9;">
+                        <div>
+                            <span class="stat-label">On Leave Today</span>
+                            <div class="stat-value" style="font-size: 1.25rem;" th:text="${metrics.activeLeavesToday}">0
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="box-shadow: none; background: #f8fafc; border-color: #f1f5f9;">
+                        <div>
+                            <span class="stat-label">Pending Requests</span>
+                            <div class="stat-value" style="font-size: 1.25rem;"
+                                th:text="${metrics.pendingLeaveRequests}">0</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Management -->
+            <section class="card">
+                <h2
+                    style="font-size: 1.15rem; font-weight: 700; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="fas fa-cogs" style="color: var(--primary);"></i> Control Center
+                </h2>
+                <div class="grid-2" style="gap: 1rem;">
+                    <a href="/admin/employees/add" class="btn"
+                        style="background: #f1f5f9; color: var(--text-dark); justify-content: flex-start; padding: 1rem;">
+                        <i class="fas fa-user-plus" style="color: var(--primary);"></i> Add Employee
+                    </a>
+                    <a href="/admin/reports/leaves" class="btn"
+                        style="background: #f1f5f9; color: var(--text-dark); justify-content: flex-start; padding: 1rem;">
+                        <i class="fas fa-chart-pie" style="color: var(--secondary);"></i> Leave Reports
+                    </a>
+                    <a href="/admin/config/announcements" class="btn"
+                        style="background: #f1f5f9; color: var(--text-dark); justify-content: flex-start; padding: 1rem;">
+                        <i class="fas fa-bullhorn" style="color: #f59e0b;"></i> New Announcement
+                    </a>
+                    <a href="/admin/config/departments" class="btn"
+                        style="background: #f1f5f9; color: var(--text-dark); justify-content: flex-start; padding: 1rem;">
+                        <i class="fas fa-sitemap" style="color: #ef4444;"></i> Departments
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- System Activity -->
+        <section class="card">
+            <h2
+                style="font-size: 1.15rem; font-weight: 700; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fas fa-history" style="color: var(--primary);"></i> Recent Administrative Activity
+            </h2>
+            <div th:if="${#lists.isEmpty(announcements)}"
+                style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                <i class="fas fa-shield-halved"
+                    style="font-size: 2rem; opacity: 0.2; margin-bottom: 1rem; display: block;"></i>
+                <p>System is running smoothly. No recent security alerts.</p>
+            </div>
+            <div class="table-container" th:if="${!#lists.isEmpty(announcements)}">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Activity</th>
+                            <th>Timestamp</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ann : ${announcements}" th:if="${annStat.index < 3}">
+                            <td>
+                                <div style="font-weight: 600;" th:text="${ann.title}">Update Title</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);"
+                                    th:text="${#strings.abbreviate(ann.message, 50)}">Summary...</div>
+                            </td>
+                            <td class="text-muted" th:text="${#temporals.format(ann.createdAt, 'dd MMM HH:mm')}">Time
+                            </td>
+                            <td><span class="status-badge status-approved">VERIFIED</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

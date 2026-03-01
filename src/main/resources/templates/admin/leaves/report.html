@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Leave Reports')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1 class="page-title">Leave Reports</h1>
+            <div class="text-muted" style="font-size: 0.875rem;">
+                <i class="fas fa-file-alt"></i> Comprehensive overview of employee absences
+            </div>
+        </header>
+
+        <section class="card" style="margin-bottom: 2.5rem; padding: 1.5rem;">
+            <form method="get"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; align-items: flex-end;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Employee
+                        ID</label>
+                    <input type="text" name="empId" th:value="${empId}" placeholder="Search ID...">
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label
+                        style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Department</label>
+                    <select name="deptId">
+                        <option value="">All Departments</option>
+                        <option th:each="dept : ${departments}" th:value="${dept.departmentId}"
+                            th:text="${dept.departmentName}" th:selected="${dept.departmentId == deptId}"></option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label
+                        style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Status</label>
+                    <select name="status">
+                        <option value="ALL" th:selected="${status == 'ALL'}">All Status</option>
+                        <option value="PENDING" th:selected="${status == 'PENDING'}">Pending</option>
+                        <option value="APPROVED" th:selected="${status == 'APPROVED'}">Approved</option>
+                        <option value="REJECTED" th:selected="${status == 'REJECTED'}">Rejected</option>
+                        <option value="CANCELLED" th:selected="${status == 'CANCELLED'}">Cancelled</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="height: 45px; justify-content: center;">
+                    <i class="fas fa-filter"></i> Apply Filters
+                </button>
+            </form>
+        </section>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Leave Type</th>
+                        <th>Dates</th>
+                        <th>Reason</th>
+                        <th style="width: 120px;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="leave : ${leaves}">
+                        <td>
+                            <div style="font-weight: 600; color: var(--text-dark);" th:text="${leave.employeeName}">John
+                                Doe</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);" th:text="${leave.empId}">EMP001
+                            </div>
+                        </td>
+                        <td>
+                            <span style="font-weight: 500;" th:text="${leave.leaveTypeName}">Annual Leave</span>
+                        </td>
+                        <td>
+                            <div style="font-weight: 500;" th:text="${leave.startDate}">2024-03-20</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);"
+                                th:text="${'to ' + leave.endDate}">to 2024-03-22</div>
+                        </td>
+                        <td>
+                            <div style="max-width: 300px; font-size: 0.875rem; color: var(--text-muted); line-height: 1.4;"
+                                th:text="${leave.reason}">Vacation</div>
+                        </td>
+                        <td>
+                            <span class="badge"
+                                th:classappend="${leave.status == 'APPROVED' ? 'badge-success' : (leave.status == 'REJECTED' ? 'badge-danger' : (leave.status == 'PENDING' ? 'badge-warning' : ''))}"
+                                th:text="${leave.status}" style="width: 100%; text-align: center;">PENDING</span>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(leaves)}">
+                        <td colspan="5" style="text-align: center; padding: 4rem; color: var(--text-muted);">
+                            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.2;"></i>
+                            <p>No leave records found matching your selection.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Pagination Controls -->
+            <div
+                th:replace="~{fragments/pagination :: pagination(page=${page}, baseUrl='/admin/leaves', sortParams=null, extraParams=${(empId != null ? '&empId=' + empId : '') + (deptId != null ? '&deptId=' + deptId : '') + (status != null ? '&status=' + status : '')})}">
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

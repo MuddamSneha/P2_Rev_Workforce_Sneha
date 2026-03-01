@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Performance Dashboard')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header" style="flex-direction: row; align-items: center; justify-content: space-between;">
+            <div>
+                <h1 class="page-title">Performance Overview</h1>
+                <div class="text-muted" style="font-size: 0.875rem;">
+                    <i class="fas fa-chart-line"></i> Track your professional growth and milestones
+                </div>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <a href="/performance/goal/add" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Define New Goal
+                </a>
+                <a href="/performance/review/submit" class="btn btn-secondary"
+                    style="background: white; border-color: var(--border);">
+                    <i class="fas fa-file-signature"></i> Self Assessment
+                </a>
+            </div>
+        </header>
+
+        <!-- Goals Section -->
+        <section style="margin-bottom: 4rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0;">Annual Objectives</h2>
+                <span class="badge" style="background: var(--primary-light); color: var(--primary); font-weight: 700;"
+                    th:text="${goals.size() + ' Active'}">0 Active</span>
+                <div style="flex: 1; height: 1px; background: var(--border);"></div>
+            </div>
+
+            <div th:if="${not #lists.isEmpty(goals)}"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 2rem;">
+                <div th:each="goal : ${goals}" class="card goal-card"
+                    style="padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
+                    <!-- Priority Indicator Strip -->
+                    <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%;"
+                        th:styleappend="${goal.priority == 'HIGH' ? 'background: var(--danger);' : (goal.priority == 'MEDIUM' ? 'background: var(--warning);' : 'background: var(--success);')}">
+                    </div>
+
+                    <div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
+                            <span class="badge"
+                                th:classappend="${goal.priority == 'HIGH' ? 'badge-danger' : (goal.priority == 'MEDIUM' ? 'badge-warning' : 'badge-success')}"
+                                th:text="${goal.priority}">HIGH</span>
+                            <div style="color: var(--text-muted); font-size: 0.75rem; font-weight: 600;">
+                                <i class="far fa-clock"></i> <span th:text="${goal.deadline}">31 Dec 2026</span>
+                            </div>
+                        </div>
+
+                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-dark);"
+                            th:text="${goal.goalDesc}">Goal Title</h3>
+
+                        <div style="margin-bottom: 2rem;">
+                            <div
+                                style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                <span style="font-weight: 600; color: var(--text-muted);">Current Progress</span>
+                                <span style="font-weight: 700; color: var(--primary);"
+                                    th:text="${goal.progress + '%'}">0%</span>
+                            </div>
+                            <div class="progress-container" style="height: 10px;">
+                                <div class="progress-bar" th:style="'width: ' + ${goal.progress} + '%'"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 1rem;">
+                        <form th:action="@{/performance/goal/update}" method="post"
+                            style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.75rem; align-items: center;">
+                            <input type="hidden" name="goalId" th:value="${goal.goalId}">
+                            <div style="position: relative;">
+                                <input type="number" name="progress" th:value="${goal.progress}" min="0" max="100"
+                                    style="padding: 0.5rem; border-radius: 8px; border: 1px solid var(--border); width: 100%; font-size: 0.875rem;">
+                                <span
+                                    style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); font-size: 0.75rem; color: var(--text-muted);">%</span>
+                            </div>
+                            <select name="status"
+                                style="padding: 0.5rem; border-radius: 8px; border: 1px solid var(--border); font-size: 0.875rem; color: var(--text-dark);">
+                                <option value="NOT_STARTED" th:selected="${goal.status == 'NOT_STARTED'}">Not Started
+                                </option>
+                                <option value="IN_PROGRESS" th:selected="${goal.status == 'IN_PROGRESS'}">In Progress
+                                </option>
+                                <option value="COMPLETED" th:selected="${goal.status == 'COMPLETED'}">Completed</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary" style="padding: 0.6rem; min-width: 44px;">
+                                <i class="fas fa-save"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div th:if="${#lists.isEmpty(goals)}" class="card"
+                style="padding: 5rem 2rem; text-align: center; border-style: dashed; border-width: 2px;">
+                <div style="font-size: 3.5rem; color: #e2e8f0; margin-bottom: 1.5rem;">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3 style="color: var(--text-muted); font-weight: 500;">No goals defined for this period</h3>
+                <p
+                    style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.75rem; max-width: 400px; margin-inline: auto;">
+                    Defining clear goals is the first step towards career growth. Use the button above to start tracking
+                    your objectives.
+                </p>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div
+                th:replace="~{fragments/pagination :: pagination(page=${page}, baseUrl='/performance', sortParams=null, extraParams='')}">
+            </div>
+        </section>
+
+        <!-- Performance Reviews Section -->
+        <section>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0;">Growth History</h2>
+                <div style="flex: 1; height: 1px; background: var(--border);"></div>
+            </div>
+
+            <div class="card overflow-hidden" style="padding: 0;">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="padding-left: 2rem;">Year</th>
+                                <th style="text-align: center;">Self Rating</th>
+                                <th style="text-align: center;">Mgr Rating</th>
+                                <th>Status</th>
+                                <th style="padding-right: 2rem; width: 40%;">Feedback Highlights</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="review : ${reviews}">
+                                <td style="padding-left: 2rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div
+                                            style="width: 36px; height: 36px; background: var(--bg); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700; font-size: 0.75rem;">
+                                            FY
+                                        </div>
+                                        <span style="font-weight: 700; color: var(--text-dark);"
+                                            th:text="${review.reviewYear}">2026</span>
+                                    </div>
+                                </td>
+                                <td style="text-align: center;">
+                                    <div
+                                        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #f8fafc; border-radius: 8px; border: 1px solid var(--border);">
+                                        <i class="fas fa-star" style="color: #fbbf24; font-size: 0.75rem;"></i>
+                                        <span style="font-weight: 700;" th:text="${review.selfRating}">0.0</span>
+                                    </div>
+                                </td>
+                                <td style="text-align: center;">
+                                    <div th:if="${review.managerRating != null}"
+                                        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: var(--primary-light); border-radius: 8px; color: var(--primary);">
+                                        <i class="fas fa-medal" style="font-size: 0.75rem;"></i>
+                                        <span style="font-weight: 700;" th:text="${review.managerRating}">0.0</span>
+                                    </div>
+                                    <span th:if="${review.managerRating == null}" class="text-muted"
+                                        style="font-size: 0.75rem; font-style: italic;">Awaiting..</span>
+                                </td>
+                                <td>
+                                    <span class="badge"
+                                        th:classappend="${review.status == 'REVIEWED' ? 'badge-success' : 'badge-status'}"
+                                        th:text="${review.status}">SUBMITTED</span>
+                                </td>
+                                <td style="padding-right: 2rem;">
+                                    <div th:if="${review.managerFeedback != null}" style="margin-bottom: 0.5rem;">
+                                        <div
+                                            style="font-size: 0.7rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 0.25rem;">
+                                            Manager Feedback</div>
+                                        <p style="font-size: 0.875rem; color: var(--text-dark); line-height: 1.5; margin: 0;"
+                                            th:text="${review.managerFeedback}">Feedback text...</p>
+                                    </div>
+                                    <div th:if="${review.achievements != null}"
+                                        style="margin-top: 0.5rem; opacity: 0.8;">
+                                        <div
+                                            style="font-size: 0.7rem; font-weight: 700; color: var(--secondary); text-transform: uppercase; margin-bottom: 0.25rem;">
+                                            Your Accomplishments</div>
+                                        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"
+                                            th:text="${review.achievements}">Achievements...</p>
+                                    </div>
+                                    <span th:if="${review.managerFeedback == null && review.status == 'SUBMITTED'}"
+                                        class="text-muted" style="font-size: 0.75rem; font-style: italic;">
+                                        Feedback will be available once the manager completes the review process.
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(reviews)}">
+                                <td colspan="5"
+                                    style="text-align: center; padding: 4rem 2rem; color: var(--text-muted);">
+                                    No performance records found for your account.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
