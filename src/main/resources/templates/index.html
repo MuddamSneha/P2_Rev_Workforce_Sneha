@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevWorkForce | Modern Workforce Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #0d9488;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --bg: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.9) 0%, rgba(13, 148, 136, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1497366216548-37526070a742?auto=format&fit=crop&w=1400&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        /* Waves effect */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: var(--bg);
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+        }
+
+        /* Role Grid */
+        .role-section {
+            padding: 5rem 5%;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .role-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .role-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(79, 70, 229, 0.1);
+            border-color: var(--primary);
+        }
+
+        .role-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .role-card.admin .role-icon {
+            background: #fee2e2;
+            color: #ef4444;
+        }
+
+        .role-card.manager .role-icon {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .role-card.employee .role-icon {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .role-card:hover .role-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .role-card h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .role-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .btn-entry {
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .role-card.admin .btn-entry {
+            background: #ef4444;
+            color: white;
+        }
+
+        .role-card.manager .btn-entry {
+            background: #0284c7;
+            color: white;
+        }
+
+        .role-card.employee .btn-entry {
+            background: #16a34a;
+            color: white;
+        }
+
+        .role-card:hover .btn-entry {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hero">
+        <div th:if="${param.logout}"
+            style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.3); color: white; padding: 0.75rem 2rem; border-radius: 50px; margin-bottom: 2rem; font-size: 0.9rem; backdrop-filter: blur(10px);">
+            <i class="fas fa-check-circle"></i> Successfully logged out. See you soon!
+        </div>
+        <h1>Welcome to <span
+                style="background: white; color: var(--primary); padding: 0 10px; border-radius: 8px;">RevWorkForce</span>
+        </h1>
+        <p>The total solution for modern workforce management. Streamlined, professional, and built for your growth.</p>
+    </section>
+
+    <div class="role-section">
+        <div class="role-grid">
+            <!-- Employee Portal -->
+            <a href="/login/employee" class="role-card employee">
+                <div class="role-icon"><i class="fas fa-user-tie"></i></div>
+                <h2>Employee Portal</h2>
+                <p>Access your dashboard, apply for leaves, and track your performance goals.</p>
+                <span class="btn-entry">Login as Employee</span>
+            </a>
+
+            <!-- Manager Hub -->
+            <a href="/login/manager" class="role-card manager">
+                <div class="role-icon"><i class="fas fa-users-gear"></i></div>
+                <h2>Manager Hub</h2>
+                <p>Manage your direct reports, approve requests, and lead your team to success.</p>
+                <span class="btn-entry">Login as Manager</span>
+            </a>
+
+            <!-- Admin Console -->
+            <a href="/login/admin" class="role-card admin">
+                <div class="role-icon"><i class="fas fa-shield-halved"></i></div>
+                <h2>Admin Console</h2>
+                <p>Configure system settings, manage workforce data, and generate critical reports.</p>
+                <span class="btn-entry">Login as Admin</span>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 RevWorkForce. Elevating enterprise productivity.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - RevWorkforce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --error: #ef4444;
+            --border: #f1f5f9;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .error-card {
+            background: var(--white);
+            max-width: 500px;
+            width: 100%;
+            padding: 4rem 2.5rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .error-icon {
+            font-size: 5rem;
+            color: #fee2e2;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .error-icon i {
+            color: var(--error);
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-icon::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #fff1f2;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .error-code {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.05em;
+        }
+
+        .error-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn-home:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.3);
+        }
+
+        .support-text {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-card">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+
+        <div class="error-code" th:text="${status != null ? status : '500'}">500</div>
+        <h1 class="error-title" th:text="${error != null ? error : 'Something went wrong'}">System Error</h1>
+
+        <p class="error-message"
+            th:text="${message != null ? message : 'We encountered an unexpected issue while processing your request. Our team has been notified.'}">
+            We apologize for the inconvenience. Please try again or head back to the dashboard.
+        </p>
+
+        <a href="/dashboard" class="btn-home">
+            <i class="fas fa-home"></i> Back to Dashboard
+        </a>
+
+        <div class="support-text">
+            Need help? Contact our support team at <span
+                style="color: var(--primary); font-weight: 600;">support@revworkforce.com</span>
+        </div>
+    </div>
+</body>
+
+</html>
