@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Manager Dashboard')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <div class="welcome-box">
+                <h1 class="page-title">
+                    Team <span style="color: var(--secondary);">Leadership</span> 👔
+                </h1>
+                <p class="page-subtitle">
+                    Manage direct reports, approve leaves, and monitor performance
+                </p>
+            </div>
+
+            <div class="badge"
+                style="background: white; border: 1px solid var(--border); padding: 0.6rem 1.25rem; border-radius: 50px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 0.75rem;">
+                <span
+                    style="width: 10px; height: 10px; background: var(--secondary); border-radius: 50%; box-shadow: 0 0 8px rgba(13, 148, 136, 0.4);"></span>
+                <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-dark);">TEAM MANAGER</span>
+            </div>
+        </header>
+
+        <!-- Manager Stats -->
+        <div class="grid-3" style="margin-bottom: 3rem;">
+            <div class="stat-card card">
+                <div
+                    style="width: 56px; height: 56px; background: var(--secondary-light); color: var(--secondary); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <div>
+                    <span class="stat-label">Direct Reports</span>
+                    <div class="stat-value" th:text="${teamCount}">0</div>
+                </div>
+            </div>
+            <div class="stat-card card">
+                <div
+                    style="width: 56px; height: 56px; background: #fffbeb; color: #b45309; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <div>
+                    <span class="stat-label">Pending Reviews</span>
+                    <div class="stat-value" th:text="${pendingReviewsCount}">0</div>
+                </div>
+            </div>
+            <div class="stat-card card">
+                <div
+                    style="width: 56px; height: 56px; background: var(--primary-light); color: var(--primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div>
+                    <span class="stat-label">Team on Leave</span>
+                    <div class="stat-value" th:text="${onLeaveCount}">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;">
+            <!-- Team At A Glance -->
+            <section class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 style="font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-users-cog" style="color: var(--secondary);"></i> My Team
+                    </h2>
+                    <a href="/manager/team" class="btn btn-secondary"
+                        style="font-size: 0.75rem; padding: 0.4rem 1rem;">View All</a>
+                </div>
+                <div class="table-container" style="box-shadow: none; border-radius: 0; border: none;">
+                    <table style="min-width: unset;">
+                        <tbody>
+                            <tr th:each="member : ${team}">
+                                <td>
+                                    <div style="font-weight: 600;"
+                                        th:text="${member.firstName + ' ' + member.lastName}">Member Name</div>
+                                    <div style="font-size: 0.7rem; color: var(--text-muted);"
+                                        th:text="${member.designation}">Designation</div>
+                                </td>
+                                <td
+                                    style="text-align: right; display: flex; align-items: center; justify-content: flex-end; gap: 0.5rem;">
+                                    <span class="badge badge-success">Active</span>
+                                    <button class="btn btn-primary quick-rate-btn"
+                                        style="padding: 0.2rem 0.5rem; font-size: 0.7rem;"
+                                        th:attr="data-id=${member.empId}, data-name=${member.firstName + ' ' + member.lastName}">
+                                        <i class="fas fa-star" style="font-size: 0.6rem;"></i> Rate
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(team)}">
+                                <td colspan="2" class="text-muted" style="text-align: center; padding: 2rem;">No direct
+                                    reports found.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Quick Rate Modal Template -->
+            <div id="quickRateModal"
+                style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 50; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="card" style="width: 100%; max-width: 400px; padding: 2rem; position: relative;">
+                    <a href="javascript:void(0)" onclick="closeRateModal()"
+                        style="position: absolute; right: 1rem; top: 1rem; color: var(--text-muted);"><i
+                            class="fas fa-times"></i></a>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Quick Rating</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">Rate <strong
+                            id="rateEmpName">Employee</strong></p>
+                    <form th:action="@{/manager/performance/quick-rate}" method="post">
+                        <input type="hidden" name="empId" id="rateEmpId">
+                        <div class="form-group">
+                            <label>Rating (1.0 to 5.0)</label>
+                            <input type="number" name="rating" min="1.0" max="5.0" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Quick Comment</label>
+                            <textarea name="comment" rows="3" required placeholder="Great job this week..."></textarea>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" class="btn btn-secondary" onclick="closeRateModal()">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Submit Rating</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                document.querySelectorAll('.quick-rate-btn').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        var empId = this.getAttribute('data-id');
+                        var empName = this.getAttribute('data-name');
+                        document.getElementById('rateEmpId').value = empId;
+                        document.getElementById('rateEmpName').textContent = empName;
+                        document.getElementById('quickRateModal').style.display = 'flex';
+                    });
+                });
+                function closeRateModal() {
+                    document.getElementById('quickRateModal').style.display = 'none';
+                }
+            </script>
+
+            <!-- Quick Actions -->
+            <section class="card">
+                <h2
+                    style="font-size: 1.15rem; font-weight: 700; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="fas fa-paper-plane" style="color: var(--primary);"></i> Leader Tasks
+                </h2>
+                <div class="grid-2" style="gap: 1rem;">
+                    <a href="/manager/leaves" class="btn btn-primary"
+                        style="padding: 1.25rem; flex-direction: column; align-items: flex-start; gap: 0.25rem;">
+                        <i class="fas fa-clock-rotate-left"></i>
+                        <span>Approve Leaves</span>
+                    </a>
+                    <a href="/manager/performance" class="btn btn-secondary"
+                        style="padding: 1.25rem; flex-direction: column; align-items: flex-start; gap: 0.25rem; background: #f8fafc; border: 1px solid var(--border); color: var(--text-dark);">
+                        <i class="fas fa-award" style="color: var(--secondary);"></i>
+                        <span>Team Reviews</span>
+                    </a>
+                </div>
+                <div
+                    style="margin-top: 1.5rem; padding: 1rem; background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; display: flex; gap: 1rem; align-items: center;">
+                    <i class="fas fa-lightbulb" style="color: #d97706;"></i>
+                    <p style="font-size: 0.85rem; color: #92400e; margin: 0;">2 team members haven't submitted their
+                        weekly goals yet.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Announcements Row -->
+        <div class="content-row" style="margin-top: 2.5rem;">
+            <section class="card" style="padding: 2rem;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+                    <h2
+                        style="font-size: 1.15rem; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-bullhorn" style="color: var(--primary);"></i> Company Updates
+                    </h2>
+                    <a href="#" class="btn btn-secondary"
+                        style="font-size: 0.75rem; padding: 0.4rem 1rem; background: var(--bg); border: none; visibility: hidden;">
+                        See More
+                    </a>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem;">
+                    <article th:each="ann : ${announcements}" class="item-card"
+                        style="padding: 1.5rem; background: #f8fafc; border-radius: 12px; border: 1px solid #f1f5f9; transition: var(--transition);">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                            <h3 style="font-size: 0.95rem; font-weight: 600; color: var(--text-dark); margin: 0;"
+                                th:text="${ann.title}">Title</h3>
+                            <time style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;"
+                                th:text="${#temporals.format(ann.createdAt, 'dd MMM yyyy')}">Date</time>
+                        </div>
+                        <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin: 0;"
+                            th:text="${ann.message}">Message...</p>
+                    </article>
+
+                    <div th:if="${#lists.isEmpty(announcements)}"
+                        style="grid-column: 1 / -1; padding: 3rem; text-align: center; color: var(--text-muted); border: 2px dashed #f1f5f9; border-radius: 12px;">
+                        <i class="fas fa-box-open" style="font-size: 2rem; opacity: 0.2; margin-bottom: 1rem;"></i>
+                        <p style="font-size: 0.875rem;">No new announcements today.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+</body>
+
+</html>

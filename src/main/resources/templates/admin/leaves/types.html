@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Leave Types | RevWorkforce Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg: #f8fafc;
+            --sidebar-bg: #0f172a;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #94a3b8;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .nav-item i {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item.active {
+            background-color: var(--primary);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 2rem 3rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f8fafc;
+            padding: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        td {
+            padding: 1rem;
+            font-size: 0.875rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-danger {
+            background: white;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+            width: auto;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+        }
+
+        .btn-danger:hover {
+            background: var(--danger);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-logo">RevWorkforce</div>
+        <nav>
+            <a href="/dashboard" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="/admin/employees" class="nav-item"><i class="fas fa-users-cog"></i> Employee Mgmt</a>
+            <a href="/admin/leaves" class="nav-item"><i class="fas fa-calendar-check"></i> Leave reports</a>
+            <a href="/admin/leaves/types" class="nav-item active"><i class="fas fa-list-ul"></i> Leave Types</a>
+            <a href="/admin/leaves/balances" class="nav-item"><i class="fas fa-wallet"></i> Leave Balances</a>
+            <a href="/admin/leaves/holidays" class="nav-item"><i class="fas fa-umbrella-beach"></i> Holidays</a>
+            <a href="/admin/config/departments" class="nav-item">
+                <i class="fas fa-building"></i> Departments
+            </a>
+            <a href="/admin/config/designations" class="nav-item">
+                <i class="fas fa-id-badge"></i> Designations
+            </a>
+            <a href="/admin/config/announcements" class="nav-item">
+                <i class="fas fa-bullhorn"></i> Announcements
+            </a>
+            <a href="/admin/config/logs" class="nav-item">
+                <i class="fas fa-history"></i> Activity Logs
+            </a>
+            <a href="/notifications" class="nav-item" style="position: relative;">
+                <i class="fas fa-bell"></i> Notifications
+                <span th:if="${notificationCount != null and notificationCount > 0}"
+                      style="background-color: #ef4444; color: white; padding: 0.1rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; margin-left: auto;"
+                      th:text="${notificationCount}"></span>
+            </a>
+            <a href="/profile" class="nav-item"><i class="fas fa-user"></i> My Profile</a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Leave Configuration</h1>
+        </header>
+
+        <div class="grid-layout">
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-list"></i> Existing Leave Types</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Leave Name</th>
+                            <th>Max Days/Year</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="type : ${types}">
+                            <td style="font-weight: 600;" th:text="${type.leaveName}">Casual Leave</td>
+                            <td th:text="${type.maxPerYear}">12</td>
+                            <td>
+                                <form th:action="@{/admin/leaves/types/delete/{id}(id=${type.leaveTypeId})}"
+                                    method="post" onsubmit="return confirm('Are you sure?')">
+                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card" style="height: fit-content;">
+                <h2 class="card-title"><i class="fas fa-plus-circle"></i> Add New Type</h2>
+                <form th:action="@{/admin/leaves/types/save}" method="post" th:object="${newType}">
+                    <div class="form-group">
+                        <label>Leave Name</label>
+                        <input type="text" th:field="*{leaveName}" placeholder="e.g. Sick Leave" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Maximum Days Per Year</label>
+                        <input type="number" th:field="*{maxPerYear}" placeholder="e.g. 15" required min="1">
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Leave Type</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

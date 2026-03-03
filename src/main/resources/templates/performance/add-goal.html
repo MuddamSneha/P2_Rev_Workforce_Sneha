@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Define New Goal')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header" style="flex-direction: row; align-items: center; justify-content: space-between;">
+            <div>
+                <h1 class="page-title">Define Performance Goal</h1>
+                <div class="text-muted" style="font-size: 0.875rem;">
+                    <i class="fas fa-bullseye"></i> Set a new objective to track your professional progress
+                </div>
+            </div>
+            <a href="/performance" class="btn btn-secondary" style="background: white; border-color: var(--border);">
+                <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i> Back to Dashboard
+            </a>
+        </header>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            <!-- Goal Setting Tips Alert -->
+            <div class="alert alert-info" style="margin-bottom: 2rem; border-left: 4px solid var(--secondary);">
+                <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                    <i class="fas fa-lightbulb"
+                        style="font-size: 1.25rem; margin-top: 0.2rem; color: var(--secondary);"></i>
+                    <div>
+                        <strong style="display: block; margin-bottom: 0.25rem;">SMART Goal Setting:</strong>
+                        <p style="font-size: 0.875rem; opacity: 0.9;">Make your goals Specific, Measurable, Achievable,
+                            Relevant, and Time-bound for better tracking and success.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 3rem;">
+                <form th:action="@{/performance/goal/save}" th:object="${goal}" method="post">
+                    <h3
+                        style="font-size: 0.875rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                        Goal Specification
+                        <span style="flex: 1; height: 1px; background: var(--border);"></span>
+                    </h3>
+
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label class="form-label" for="goalDesc">Goal Description</label>
+                        <div style="position: relative;">
+                            <textarea id="goalDesc" th:field="*{goalDesc}" rows="4"
+                                placeholder="Describe what you want to achieve this period..." required
+                                style="padding: 1rem 1rem 1rem 2.5rem; resize: vertical;"></textarea>
+                            <i class="fas fa-tasks"
+                                style="position: absolute; left: 1rem; top: 1.25rem; color: var(--text-muted); pointer-events: none;"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 2.5rem;">
+                        <label class="form-label" for="successMetric">Success Metric</label>
+                        <div style="position: relative;">
+                            <input type="text" id="successMetric" th:field="*{successMetric}"
+                                placeholder="How will you measure the success of this goal?" required
+                                style="padding-left: 2.5rem;">
+                            <i class="fas fa-chart-line"
+                                style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;"></i>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="deadline">Target Deadline</label>
+                            <div style="position: relative;">
+                                <input type="date" id="deadline" th:field="*{deadline}" required
+                                    style="padding-left: 2.5rem;">
+                                <i class="fas fa-calendar-alt"
+                                    style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="priority">Priority Level</label>
+                            <div style="position: relative;">
+                                <select id="priority" th:field="*{priority}" required style="padding-left: 2.5rem;">
+                                    <option value="HIGH">High Priority</option>
+                                    <option value="MEDIUM">Medium Priority</option>
+                                    <option value="LOW">Low Priority</option>
+                                </select>
+                                <i class="fas fa-flag"
+                                    style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex; gap: 1rem; justify-content: flex-end; border-top: 1px solid var(--border); padding-top: 2rem;">
+                        <a href="/performance" class="btn"
+                            style="background: #f1f5f9; color: var(--text-dark); padding: 0.75rem 2rem;">
+                            Discard
+                        </a>
+                        <button type="submit" class="btn btn-primary" style="padding: 0.75rem 3rem; font-weight: 700;">
+                            <i class="fas fa-save" style="margin-right: 0.5rem;"></i> Save Objective
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Manage Announcements')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1 class="page-title">Company Announcements</h1>
+        </header>
+
+        <div class="card" style="margin-bottom: 2.5rem;">
+            <div
+                style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                <i class="fas fa-bullhorn" style="color: var(--primary);"></i> Create / Edit Announcement
+            </div>
+            <form th:action="@{/admin/config/announcements/save}" th:object="${newAnnouncement}" method="post">
+                <input type="hidden" th:field="*{announcementId}">
+                <div class="form-group">
+                    <label>Announcement Title</label>
+                    <input type="text" th:field="*{title}" placeholder="e.g. System Maintenance, Holiday Update"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>Message Details</label>
+                    <textarea th:field="*{message}" placeholder="Type the announcement details here..." required
+                        style="min-height: 120px;"></textarea>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 1rem;">
+                    <button type="button" id="clearBtn" class="btn"
+                        style="background: #f1f5f9; color: var(--text-muted);">Clear</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Publish Announcement
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem;">
+            <div th:each="ann : ${announcements}" class="card card-hover"
+                style="padding: 1.5rem; position: relative; border-top: 4px solid var(--primary);">
+                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem;">
+                    <a href="javascript:void(0)" class="text-muted edit-btn" th:data-id="${ann.announcementId}"
+                        th:data-title="${ann.title}" th:data-message="${ann.message}" title="Edit"
+                        style="text-decoration: none;">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a th:href="@{/admin/config/announcements/delete/{id}(id=${ann.announcementId})}"
+                        style="color: #ef4444; opacity: 0.7; transition: 0.2s;"
+                        onclick="return confirm('Are you sure you want to delete this announcement?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+
+                <h3 th:text="${ann.title}"
+                    style="font-size: 1.1rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.75rem; padding-right: 3rem;">
+                    Announcement Title</h3>
+                <p th:text="${ann.message}"
+                    style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+                    Announcement details...</p>
+
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
+                    <span th:if="${ann.createdAt != null}"
+                        th:text="${#temporals.format(ann.createdAt, 'MMM dd, yyyy HH:mm')}"></span>
+                    <span th:if="${ann.createdAt == null}">—</span>
+                    <span th:text="|By: ${ann.creatorName ?: 'Admin'}|"
+                        style="font-weight: 500; color: var(--primary);">Admin</span>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(announcements)}" class="card"
+            style="text-align: center; color: var(--text-muted); padding: 4rem; border-style: dashed;">
+            <i class="fas fa-bullhorn" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+            <p>No active announcements found.</p>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div
+            th:replace="~{fragments/pagination :: pagination(page=${page}, baseUrl='/admin/config/announcements', sortParams=null, extraParams='')}">
+        </div>
+    </main>
+
+    <script th:inline="javascript">
+        // Use data attributes instead of inline JS expressions to avoid Thymeleaf parsing issues
+        document.querySelectorAll('.edit-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var id = this.getAttribute('data-id');
+                var title = this.getAttribute('data-title');
+                var message = this.getAttribute('data-message');
+                document.querySelector('[name="announcementId"]').value = id;
+                document.querySelector('[name="title"]').value = title;
+                document.querySelector('[name="message"]').value = message;
+                document.querySelector('[name="title"]').focus();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        document.getElementById('clearBtn').addEventListener('click', function () {
+            document.querySelector('[name="announcementId"]').value = '';
+            document.querySelector('[name="title"]').value = '';
+            document.querySelector('[name="message"]').value = '';
+        });
+    </script>
+    <style>
+        .text-muted:hover {
+            color: var(--primary) !important;
+        }
+
+        a:hover {
+            opacity: 1 !important;
+        }
+    </style>
+</body>
+
+</html>

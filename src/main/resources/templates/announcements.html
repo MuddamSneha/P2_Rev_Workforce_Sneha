@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Company Announcements')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header" style="margin-bottom: 2rem;">
+            <div class="welcome-box">
+                <h1 class="page-title">
+                    <i class="fas fa-bullhorn" style="color: var(--primary);"></i> Company Announcements
+                </h1>
+                <p class="page-subtitle">Stay up to date with the latest news and updates</p>
+            </div>
+            <a href="/dashboard" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </header>
+
+        <section class="card" style="padding: 2.5rem;">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <article th:each="ann : ${page.content}" class="item-card"
+                    style="padding: 2rem; background: #f8fafc; border-radius: 12px; border: 1px solid #f1f5f9; transition: var(--transition);">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin: 0;"
+                            th:text="${ann.title}">Title</h3>
+                        <time
+                            style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500; background: white; padding: 0.3rem 0.8rem; border-radius: 50px; border: 1px solid var(--border);"
+                            th:text="${#temporals.format(ann.createdAt, 'dd MMMM yyyy HH:mm')}">Date</time>
+                    </div>
+                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0;"
+                        th:text="${ann.message}">Message...</p>
+                </article>
+
+                <div th:if="${#lists.isEmpty(page.content)}"
+                    style="padding: 3rem; text-align: center; color: var(--text-muted); border: 2px dashed #f1f5f9; border-radius: 12px;">
+                    <i class="fas fa-box-open" style="font-size: 3rem; opacity: 0.2; margin-bottom: 1rem;"></i>
+                    <p style="font-size: 1rem;">No announcements available.</p>
+                </div>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div style="margin-top: 2rem;" th:if="${page.totalPages > 1}"
+                th:replace="~{fragments/pagination :: pagination(page=${page}, baseUrl='/announcements', sortParams=null, extraParams='')}">
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

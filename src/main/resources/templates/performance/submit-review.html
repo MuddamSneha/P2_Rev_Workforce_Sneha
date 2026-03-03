@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Self Assessment')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header" style="flex-direction: row; align-items: center; justify-content: space-between;">
+            <div>
+                <h1 class="page-title">Employee Self-Assessment</h1>
+                <div class="text-muted" style="font-size: 0.875rem;">
+                    <i class="fas fa-file-signature"></i> Reflect on your achievements and areas for growth
+                </div>
+            </div>
+            <a href="/performance" class="btn btn-secondary" style="background: white; border-color: var(--border);">
+                <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i> Back to Dashboard
+            </a>
+        </header>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start;">
+            <div class="card" style="padding: 3rem;">
+                <form th:action="@{/performance/review/save}" th:object="${review}" method="post">
+                    <h3
+                        style="font-size: 0.875rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                        Yearly Performance Reflection
+                        <span style="flex: 1; height: 1px; background: var(--border);"></span>
+                    </h3>
+
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label class="form-label" for="keyDeliverables">Key Deliverables</label>
+                        <div style="position: relative;">
+                            <textarea id="keyDeliverables" th:field="*{keyDeliverables}" rows="4"
+                                placeholder="List your primary responsibilities and the key outputs you produced..."
+                                required style="padding: 1rem 1rem 1rem 2.5rem; resize: vertical;"></textarea>
+                            <i class="fas fa-tasks"
+                                style="position: absolute; left: 1rem; top: 1.25rem; color: var(--text-muted); pointer-events: none;"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label class="form-label" for="achievements">Significant Accomplishments</label>
+                        <div style="position: relative;">
+                            <textarea id="achievements" th:field="*{achievements}" rows="5"
+                                placeholder="Highlight your biggest wins, successful project completions, and positive impacts..."
+                                required style="padding: 1rem 1rem 1rem 2.5rem; resize: vertical;"></textarea>
+                            <i class="fas fa-award"
+                                style="position: absolute; left: 1rem; top: 1.25rem; color: var(--text-muted); pointer-events: none;"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 2.5rem;">
+                        <label class="form-label" for="improvements">Growth & Development Areas</label>
+                        <div style="position: relative;">
+                            <textarea id="improvements" th:field="*{improvements}" rows="6"
+                                placeholder="What skills or areas do you want to develop further in the coming year?"
+                                required style="padding: 1rem 1rem 1rem 2.5rem; resize: vertical;"></textarea>
+                            <i class="fas fa-seedling"
+                                style="position: absolute; left: 1rem; top: 1.25rem; color: var(--text-muted); pointer-events: none;"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="max-width: 300px; margin-bottom: 3rem;">
+                        <label class="form-label" for="selfRating">Self-Assessment Rating</label>
+                        <div style="position: relative;">
+                            <input type="number" id="selfRating" th:field="*{selfRating}" step="0.1" min="1.0" max="5.0"
+                                required style="padding-left: 2.5rem; font-weight: 700; color: var(--primary);">
+                            <i class="fas fa-star"
+                                style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;"></i>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex; gap: 1rem; justify-content: flex-end; border-top: 1px solid var(--border); padding-top: 2rem;">
+                        <a href="/performance" class="btn"
+                            style="background: #f1f5f9; color: var(--text-dark); padding: 0.75rem 2rem;">
+                            Discard
+                        </a>
+                        <button type="submit" class="btn btn-primary" style="padding: 0.75rem 3rem; font-weight: 700;">
+                            <i class="fas fa-paper-plane" style="margin-right: 0.5rem;"></i> Submit Assessment
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <aside>
+                <div class="card" style="padding: 2rem; background: var(--bg); border: none;">
+                    <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-dark);">
+                        Rating Scale Guide</h4>
+                    <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem;">
+                        <li style="display: flex; gap: 1rem;">
+                            <div
+                                style="width: 32px; height: 32px; min-width: 32px; background: #fee2e2; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #b91c1c; font-weight: 700; font-size: 0.875rem;">
+                                1</div>
+                            <div>
+                                <strong style="display: block; font-size: 0.875rem;">Below Expectations</strong>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.25rem 0 0;">
+                                    Substantial improvement required.</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 1rem;">
+                            <div
+                                style="width: 32px; height: 32px; min-width: 32px; background: #fff7ed; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #c2410c; font-weight: 700; font-size: 0.875rem;">
+                                2</div>
+                            <div>
+                                <strong style="display: block; font-size: 0.875rem;">Needs Development</strong>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.25rem 0 0;">
+                                    Inconsistent performance in key areas.</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 1rem;">
+                            <div
+                                style="width: 32px; height: 32px; min-width: 32px; background: #f0fdf4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #15803d; font-weight: 700; font-size: 0.875rem;">
+                                3</div>
+                            <div>
+                                <strong style="display: block; font-size: 0.875rem;">Meets Expectations</strong>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.25rem 0 0;">Solid,
+                                    reliable performance.</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 1rem;">
+                            <div
+                                style="width: 32px; height: 32px; min-width: 32px; background: #ecfdf5; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #047857; font-weight: 700; font-size: 0.875rem;">
+                                4</div>
+                            <div>
+                                <strong style="display: block; font-size: 0.875rem;">Exceeds Expectations</strong>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.25rem 0 0;">Frequently
+                                    goes above and beyond.</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 1rem;">
+                            <div
+                                style="width: 32px; height: 32px; min-width: 32px; background: var(--primary-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700; font-size: 0.875rem;">
+                                5</div>
+                            <div>
+                                <strong style="display: block; font-size: 0.875rem;">Outstanding</strong>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.25rem 0 0;">
+                                    Exceptional contributions and impact.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div
+                    style="margin-top: 2rem; padding: 1.5rem; background: #fff; border-radius: 12px; border: 1px dashed var(--border);">
+                    <div style="display: flex; gap: 0.75rem; color: var(--text-muted);">
+                        <i class="fas fa-lock" style="font-size: 0.875rem; margin-top: 0.2rem;"></i>
+                        <p style="font-size: 0.75rem; margin: 0; line-height: 1.4;">Your self-assessment is confidential
+                            and will only be visible to you and your reporting manager.</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+</body>
+
+</html>

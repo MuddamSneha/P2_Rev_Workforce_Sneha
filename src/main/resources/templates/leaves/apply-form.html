@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Apply for Leave')}"></head>
+
+<body>
+    <!-- Top Navbar Fragment -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">Request Time Off</h1>
+                <p class="page-subtitle">Submit a new leave application for approval</p>
+            </div>
+            <a href="/leaves" class="btn btn-secondary">
+                <i class="fas fa-history"></i> Leave History
+            </a>
+        </header>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            <!-- Informational Alert -->
+            <div class="alert alert-info" style="border-left: 4px solid var(--primary); background: #f0f7ff;">
+                <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                    <i class="fas fa-info-circle" style="color: var(--primary); font-size: 1.25rem;"></i>
+                    <div>
+                        <strong style="display: block; margin-bottom: 0.25rem; color: var(--text);">Before you
+                            apply:</strong>
+                        <p style="font-size: 0.875rem; color: var(--text-muted);">Please ensure you have sufficient
+                            leave balance. All applications are subject to manager approval based on team availability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 2.5rem;">
+                <!-- Error Message -->
+                <div th:if="${errorMessage}" class="alert alert-error">
+                    <i class="fas fa-exclamation-triangle"></i> <span th:text="${errorMessage}">Error message</span>
+                </div>
+
+                <form th:action="@{/leaves/save}" th:object="${leave}" method="post">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                        <h3
+                            style="font-size: 0.875rem; font-weight: 700; color: var(--primary); text-transform: uppercase;">
+                            Application Details</h3>
+                        <div style="flex: 1; height: 1px; background: var(--border);"></div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-label">Leave Category</label>
+                        <div class="input-wrapper" style="position: relative;">
+                            <i class="fas fa-tag"
+                                style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                            <select th:field="*{leaveTypeId}" required style="padding-left: 3rem;">
+                                <option value="">Select Leave Type</option>
+                                <option th:each="type : ${leaveTypes}" th:value="${type.leaveTypeId}"
+                                    th:text="${type.leaveName}">Sick Leave</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-2" style="margin-bottom: 1.5rem;">
+                        <div class="form-group">
+                            <label class="form-label">Start Date</label>
+                            <div class="input-wrapper" style="position: relative;">
+                                <i class="fas fa-calendar"
+                                    style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                                <input type="date" th:field="*{startDate}" required style="padding-left: 3rem;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">End Date</label>
+                            <div class="input-wrapper" style="position: relative;">
+                                <i class="fas fa-calendar-check"
+                                    style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                                <input type="date" th:field="*{endDate}" required style="padding-left: 3rem;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 2.5rem;">
+                        <label class="form-label">Reason for Absence</label>
+                        <div class="input-wrapper" style="position: relative;">
+                            <i class="fas fa-comment-alt"
+                                style="position: absolute; left: 1.25rem; top: 1.25rem; color: var(--text-muted);"></i>
+                            <textarea th:field="*{reason}" rows="4"
+                                placeholder="Briefly describe your reason for taking leave..." required
+                                style="padding-left: 3rem;"></textarea>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex; justify-content: flex-end; gap: 1rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+                        <a href="/leaves" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
