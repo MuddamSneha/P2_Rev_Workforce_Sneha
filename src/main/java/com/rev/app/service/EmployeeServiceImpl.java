@@ -89,26 +89,28 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeRepository.findById(dto.getEmpId())
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found with ID: " + dto.getEmpId()));
 
-        employee.setFirstName(dto.getFirstName());
-        employee.setLastName(dto.getLastName());
+        if (dto.getFirstName() != null) employee.setFirstName(dto.getFirstName());
+        if (dto.getLastName() != null) employee.setLastName(dto.getLastName());
         employee.setPhone(dto.getPhone());
         employee.setAddress(dto.getAddress());
         employee.setEmergencyContact(dto.getEmergencyContact());
         if (dto.getDesignationId() != null) {
             employee.setDesignation(designationRepository.findById(dto.getDesignationId()).orElse(null));
-        } else {
-            employee.setDesignation(null);
         }
         employee.setSalary(dto.getSalary());
         employee.setDob(dto.getDob());
-        employee.setJoiningDate(dto.getJoiningDate());
+        if (dto.getJoiningDate() != null) {
+            employee.setJoiningDate(dto.getJoiningDate());
+        }
 
         if (dto.getDepartmentId() != null) {
             employee.setDepartment(departmentRepository.findById(dto.getDepartmentId()).orElse(null));
         }
 
-        if (dto.getManagerId() != null) {
+        if (dto.getManagerId() != null && !dto.getManagerId().isEmpty()) {
             employee.setManager(employeeRepository.findById(dto.getManagerId()).orElse(null));
+        } else {
+            employee.setManager(null);
         }
 
         if (dto.getRole() != null && employee.getUser() != null) {
@@ -133,17 +135,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDto> getAllEmployees() {
-        return employeeRepository.findAll().stream()
-                .map(dtoMapper::toEmployeeDto)
-                .collect(Collectors.toList());
+    public org.springframework.data.domain.Page<EmployeeDto> getAllEmployees(int page, int size, String sortBy) {
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size, org.springframework.data.domain.Sort.by(sortBy));
+        return employeeRepository.findAll(pageable)
+                .map(dtoMapper::toEmployeeDto);
     }
 
     @Override
-    public List<EmployeeDto> searchEmployees(String query) {
-        return employeeRepository.searchEmployees(query).stream()
-                .map(dtoMapper::toEmployeeDto)
-                .collect(Collectors.toList());
+    public org.springframework.data.domain.Page<EmployeeDto> searchEmployees(String query, int page, int size, String sortBy) {
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size, org.springframework.data.domain.Sort.by(sortBy));
+        return employeeRepository.searchEmployees(query, pageable)
+                .map(dtoMapper::toEmployeeDto);
     }
 
     @Override

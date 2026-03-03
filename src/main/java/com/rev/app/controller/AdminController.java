@@ -19,13 +19,23 @@ public class AdminController {
     private ConfigService configService;
 
     @GetMapping("/employees")
-    public String listEmployees(@RequestParam(required = false) String search, Model model) {
+    public String listEmployees(
+            @RequestParam(required = false) String search,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "empId") String sortBy,
+            Model model) {
+        
+        org.springframework.data.domain.Page<EmployeeDto> employeePage;
         if (search != null && !search.isEmpty()) {
-            model.addAttribute("employees", employeeService.searchEmployees(search));
+            employeePage = employeeService.searchEmployees(search, page, size, sortBy);
             model.addAttribute("search", search);
         } else {
-            model.addAttribute("employees", employeeService.getAllEmployees());
+            employeePage = employeeService.getAllEmployees(page, size, sortBy);
         }
+        
+        model.addAttribute("employees", employeePage.getContent());
+        model.addAttribute("page", employeePage);
         return "admin/employee-list";
     }
 
@@ -34,7 +44,7 @@ public class AdminController {
         model.addAttribute("employee", new EmployeeDto());
         model.addAttribute("departments", configService.getAllDepartments());
         model.addAttribute("designations", configService.getAllDesignations());
-        model.addAttribute("managers", employeeService.getAllEmployees());
+        model.addAttribute("managers", employeeService.getAllEmployees(0, Integer.MAX_VALUE, "firstName").getContent());
         return "admin/employee-form";
     }
 
@@ -44,7 +54,7 @@ public class AdminController {
         model.addAttribute("employee", employee);
         model.addAttribute("departments", configService.getAllDepartments());
         model.addAttribute("designations", configService.getAllDesignations());
-        model.addAttribute("managers", employeeService.getAllEmployees());
+        model.addAttribute("managers", employeeService.getAllEmployees(0, Integer.MAX_VALUE, "firstName").getContent());
         return "admin/employee-form";
     }
 
@@ -62,7 +72,7 @@ public class AdminController {
             model.addAttribute("error", ex.getMessage());
             model.addAttribute("departments", configService.getAllDepartments());
             model.addAttribute("designations", configService.getAllDesignations());
-            model.addAttribute("managers", employeeService.getAllEmployees());
+            model.addAttribute("managers", employeeService.getAllEmployees(0, Integer.MAX_VALUE, "firstName").getContent());
             return "admin/employee-form";
         }
     }

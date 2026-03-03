@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class LeaveServiceImpl implements LeaveService {
@@ -170,24 +169,24 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public List<LeaveDto> getEmployeeLeaves(String empId) {
-        return leaveApplicationRepository.findByEmployee_EmpId(empId).stream()
-                .map(dtoMapper::toLeaveDto)
-                .collect(Collectors.toList());
+    public org.springframework.data.domain.Page<LeaveDto> getEmployeeLeaves(String empId, int page, int size, String sortBy) {
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size, org.springframework.data.domain.Sort.by(sortBy));
+        return leaveApplicationRepository.findByEmployee_EmpId(empId, pageable)
+                .map(dtoMapper::toLeaveDto);
     }
 
     @Override
-    public List<LeaveDto> getPendingLeavesForManager(String managerId) {
-        return leaveApplicationRepository.findPendingByManagerId(managerId).stream()
-                .map(dtoMapper::toLeaveDto)
-                .collect(Collectors.toList());
+    public org.springframework.data.domain.Page<LeaveDto> getPendingLeavesForManager(String managerId, int page, int size, String sortBy) {
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size, org.springframework.data.domain.Sort.by(sortBy));
+        return leaveApplicationRepository.findPendingByManagerId(managerId, pageable)
+                .map(dtoMapper::toLeaveDto);
     }
 
     @Override
-    public List<LeaveDto> getAllLeaves() {
-        return leaveApplicationRepository.findAll().stream()
-                .map(dtoMapper::toLeaveDto)
-                .collect(Collectors.toList());
+    public org.springframework.data.domain.Page<LeaveDto> getAllLeaves(int page, int size, String sortBy) {
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size, org.springframework.data.domain.Sort.by(sortBy));
+        return leaveApplicationRepository.findAll(pageable)
+                .map(dtoMapper::toLeaveDto);
     }
     @Override
     public List<LeaveBalance> getLeaveBalances(String empId) {
@@ -200,11 +199,10 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public List<LeaveDto> getTeamLeaves(String managerId) {
-        return leaveApplicationRepository.findAll().stream()
-                .filter(la -> la.getEmployee().getManager() != null && la.getEmployee().getManager().getEmpId().equals(managerId))
-                .map(dtoMapper::toLeaveDto)
-                .collect(Collectors.toList());
+    public org.springframework.data.domain.Page<LeaveDto> getTeamLeaves(String managerId, int page, int size, String sortBy) {
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size, org.springframework.data.domain.Sort.by(sortBy));
+        return leaveApplicationRepository.findByEmployee_Manager_EmpId(managerId, pageable)
+                .map(dtoMapper::toLeaveDto);
     }
     @Override
     public List<LeaveType> getAllLeaveTypes() {
@@ -245,13 +243,10 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public List<LeaveDto> searchLeaves(String empId, Long deptId, String status) {
-        return leaveApplicationRepository.findAll().stream()
-                .filter(la -> (empId == null || la.getEmployee().getEmpId().contains(empId)))
-                .filter(la -> (deptId == null || (la.getEmployee().getDepartment() != null && la.getEmployee().getDepartment().getDepartmentId().equals(deptId))))
-                .filter(la -> (status == null || "ALL".equals(status) || status.equals(la.getStatus())))
-                .map(dtoMapper::toLeaveDto)
-                .collect(Collectors.toList());
+    public org.springframework.data.domain.Page<LeaveDto> searchLeaves(String empId, Long deptId, String status, int page, int size, String sortBy) {
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size, org.springframework.data.domain.Sort.by(sortBy));
+        return leaveApplicationRepository.searchLeaves(empId, deptId, status, pageable)
+                .map(dtoMapper::toLeaveDto);
     }
 
     @Override

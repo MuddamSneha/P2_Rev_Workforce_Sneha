@@ -32,7 +32,11 @@ public class PerformanceController {
     private EmployeeService employeeService;
 
     @GetMapping
-    public String performanceDashboard(Model model, Principal principal) {
+    public String performanceDashboard(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "goalId") String sortBy,
+            Model model, Principal principal) {
         if (principal != null) {
             String email = principal.getName();
             Optional<User> userOpt = userService.findByEmail(email);
@@ -40,8 +44,11 @@ public class PerformanceController {
                 com.rev.app.dto.EmployeeDto empDto = employeeService.getEmployeeByUserId(userOpt.get().getUserId());
                 if (empDto != null) {
                     String empId = empDto.getEmpId();
-                    model.addAttribute("goals", goalService.getEmployeeGoals(empId));
-                    model.addAttribute("reviews", performanceService.getEmployeeReviews(empId));
+                    org.springframework.data.domain.Page<GoalDto> goalsPage = goalService.getEmployeeGoals(empId, page, size, sortBy);
+                    model.addAttribute("goals", goalsPage.getContent());
+                    model.addAttribute("page", goalsPage);
+                    org.springframework.data.domain.Page<PerformanceReviewDto> reviewsPage = performanceService.getEmployeeReviews(empId, page, size, "reviewYear");
+                    model.addAttribute("reviews", reviewsPage.getContent());
                 }
             }
         }

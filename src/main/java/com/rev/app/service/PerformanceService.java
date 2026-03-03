@@ -3,18 +3,19 @@ package com.rev.app.service;
 import com.rev.app.dto.PerformanceReviewDto;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public interface PerformanceService {
     PerformanceReviewDto submitReview(PerformanceReviewDto reviewDto);
 
     PerformanceReviewDto provideFeedback(Long reviewId, BigDecimal rating, String feedback);
 
-    List<PerformanceReviewDto> getEmployeeReviews(String empId);
+    org.springframework.data.domain.Page<PerformanceReviewDto> getEmployeeReviews(String empId, int page, int size, String sortBy);
 
-    List<PerformanceReviewDto> getTeamReviews(String managerId);
+    org.springframework.data.domain.Page<PerformanceReviewDto> getTeamReviews(String managerId, int page, int size, String sortBy);
 
     PerformanceReviewDto getReviewById(Long reviewId);
 
     void reviewGoal(Long goalId, String comment);
+
+    PerformanceReviewDto submitQuickRating(String empId, BigDecimal rating, String comment);
 }

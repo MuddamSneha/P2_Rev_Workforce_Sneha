@@ -1,5 +1,6 @@
 package com.rev.app.controller;
 
+import com.rev.app.dto.LeaveDto;
 import com.rev.app.entity.HolidayCalendar;
 import com.rev.app.entity.LeaveType;
 import com.rev.app.service.ConfigService;
@@ -27,8 +28,13 @@ public class AdminLeaveController {
     public String leaveReport(@RequestParam(required = false) String empId,
                              @RequestParam(required = false) Long deptId,
                              @RequestParam(required = false, defaultValue = "ALL") String status,
+                             @RequestParam(defaultValue = "0") int page,
+                             @RequestParam(defaultValue = "10") int size,
+                             @RequestParam(defaultValue = "leaveId") String sortBy,
                              Model model) {
-        model.addAttribute("leaves", leaveService.searchLeaves(empId, deptId, status));
+        org.springframework.data.domain.Page<LeaveDto> leavePage = leaveService.searchLeaves(empId, deptId, status, page, size, sortBy);
+        model.addAttribute("leaves", leavePage.getContent());
+        model.addAttribute("page", leavePage);
         model.addAttribute("departments", configService.getAllDepartments());
         model.addAttribute("empId", empId);
         model.addAttribute("deptId", deptId);

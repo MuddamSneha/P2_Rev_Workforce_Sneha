@@ -34,17 +34,22 @@ public class ManagerPerformanceController {
     private GoalService goalService;
 
     @GetMapping
-    public String viewTeamPerformance(Model model, Principal principal) {
+    public String viewTeamPerformance(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "reviewId") String sortBy,
+            Model model, Principal principal) {
         if (principal != null) {
             String email = principal.getName();
             Optional<User> userOpt = userService.findByEmail(email);
             if (userOpt.isPresent()) {
                 EmployeeDto manager = employeeService.getEmployeeByUserId(userOpt.get().getUserId());
                 if (manager != null) {
-                    List<PerformanceReviewDto> teamReviews = performanceService.getTeamReviews(manager.getEmpId());
+                    org.springframework.data.domain.Page<PerformanceReviewDto> teamReviewsPage = performanceService.getTeamReviews(manager.getEmpId(), page, size, sortBy);
                     List<EmployeeDto> team = employeeService.getDirectReports(manager.getEmpId());
                     
-                    model.addAttribute("teamReviews", teamReviews);
+                    model.addAttribute("teamReviews", teamReviewsPage.getContent());
+                    model.addAttribute("page", teamReviewsPage);
                     model.addAttribute("team", team);
                 }
             }
@@ -70,11 +75,17 @@ public class ManagerPerformanceController {
     }
 
     @GetMapping("/goals/{empId}")
-    public String viewEmployeeGoals(@PathVariable String empId, Model model) {
-        List<com.rev.app.dto.GoalDto> goals = goalService.getEmployeeGoals(empId);
+    public String viewEmployeeGoals(
+            @PathVariable String empId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "goalId") String sortBy,
+            Model model) {
+        org.springframework.data.domain.Page<com.rev.app.dto.GoalDto> goalsPage = goalService.getEmployeeGoals(empId, page, size, sortBy);
         EmployeeDto employee = employeeService.getEmployeeById(empId);
         
-        model.addAttribute("goals", goals);
+        model.addAttribute("goals", goalsPage.getContent());
+        model.addAttribute("page", goalsPage);
         model.addAttribute("employee", employee);
         return "manager/performance/team-goals";
     }

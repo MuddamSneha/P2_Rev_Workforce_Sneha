@@ -10,10 +10,17 @@ import java.util.List;
 
 @Repository
 public interface LeaveApplicationRepository extends JpaRepository<LeaveApplication, Long> {
-    List<LeaveApplication> findByEmployee_EmpId(String empId);
+    org.springframework.data.domain.Page<LeaveApplication> findByEmployee_EmpId(String empId, org.springframework.data.domain.Pageable pageable);
 
     @Query("SELECT la FROM LeaveApplication la WHERE la.employee.manager.empId = :managerId AND la.status = 'PENDING'")
-    List<LeaveApplication> findPendingByManagerId(@Param("managerId") String managerId);
+    org.springframework.data.domain.Page<LeaveApplication> findPendingByManagerId(@Param("managerId") String managerId, org.springframework.data.domain.Pageable pageable);
+
+    org.springframework.data.domain.Page<LeaveApplication> findByEmployee_Manager_EmpId(String managerId, org.springframework.data.domain.Pageable pageable);
+
+    @Query("SELECT la FROM LeaveApplication la WHERE (:empId IS NULL OR LOWER(la.employee.empId) LIKE LOWER(CONCAT('%', :empId, '%'))) " +
+           "AND (:deptId IS NULL OR la.employee.department.departmentId = :deptId) " +
+           "AND (:status IS NULL OR :status = 'ALL' OR la.status = :status)")
+    org.springframework.data.domain.Page<LeaveApplication> searchLeaves(@Param("empId") String empId, @Param("deptId") Long deptId, @Param("status") String status, org.springframework.data.domain.Pageable pageable);
 
     List<LeaveApplication> findByStatus(String status);
 }

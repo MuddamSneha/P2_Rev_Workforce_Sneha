@@ -13,15 +13,15 @@ public interface LeaveService {
 
     LeaveDto cancelLeave(Long leaveId);
 
-    List<LeaveDto> getEmployeeLeaves(String empId);
+    org.springframework.data.domain.Page<LeaveDto> getEmployeeLeaves(String empId, int page, int size, String sortBy);
 
-    List<LeaveDto> getPendingLeavesForManager(String managerId);
+    org.springframework.data.domain.Page<LeaveDto> getPendingLeavesForManager(String managerId, int page, int size, String sortBy);
 
-    List<LeaveDto> getAllLeaves();
+    org.springframework.data.domain.Page<LeaveDto> getAllLeaves(int page, int size, String sortBy);
 
     List<com.rev.app.entity.LeaveBalance> getLeaveBalances(String empId);
 
-    List<LeaveDto> getTeamLeaves(String managerId);
+    org.springframework.data.domain.Page<LeaveDto> getTeamLeaves(String managerId, int page, int size, String sortBy);
     List<com.rev.app.entity.LeaveType> getAllLeaveTypes();
 
     com.rev.app.entity.LeaveType saveLeaveType(com.rev.app.entity.LeaveType leaveType);
@@ -32,7 +32,7 @@ public interface LeaveService {
 
     List<com.rev.app.entity.LeaveBalance> getAllBalances();
 
-    List<LeaveDto> searchLeaves(String empId, Long deptId, String status);
+    org.springframework.data.domain.Page<LeaveDto> searchLeaves(String empId, Long deptId, String status, int page, int size, String sortBy);
     
     void initializeLeaveBalances(String empId);
 }

@@ -93,7 +93,7 @@ public class DashboardController {
             
             List<NotificationDto> notifications = notificationService.getUserNotifications(user.getUserId());
             model.addAttribute("notifications", notifications);
-            model.addAttribute("announcements", announcementService.getAllAnnouncements());
+            model.addAttribute("announcements", announcementService.getAllAnnouncements(0, 5).getContent());
 
             if (user.getRole() == User.Role.ROLE_ADMIN) {
                 model.addAttribute("metrics", reportService.getDashboardMetrics());
@@ -104,21 +104,21 @@ public class DashboardController {
                     model.addAttribute("teamCount", team.size());
                     model.addAttribute("team", team); // Add team list for the table
                     
-                    List<LeaveDto> pendingLeaves = leaveService.getPendingLeavesForManager(employee.getEmpId());
-                    model.addAttribute("pendingLeavesCount", pendingLeaves.size());
+                    org.springframework.data.domain.Page<LeaveDto> pendingLeavesPage = leaveService.getPendingLeavesForManager(employee.getEmpId(), 0, 100, "leaveId");
+                    model.addAttribute("pendingLeavesCount", pendingLeavesPage.getTotalElements());
 
                     // Dynamic Pending Reviews Count
-                    List<PerformanceReviewDto> teamReviews = performanceService.getTeamReviews(employee.getEmpId());
-                    long pendingReviewsCount = teamReviews.stream()
+                    org.springframework.data.domain.Page<PerformanceReviewDto> teamReviewsPage = performanceService.getTeamReviews(employee.getEmpId(), 0, 100, "reviewId");
+                    long pendingReviewsCount = teamReviewsPage.getContent().stream()
                             .filter(r -> "SUBMITTED".equals(r.getStatus()))
                             .count();
                     model.addAttribute("pendingReviewsCount", pendingReviewsCount);
 
                     // Dynamic Team on Leave Count (Simplified: items in TeamLeaves are usually upcoming/current)
                     // In a real app, check if today is between startDate and endDate
-                    List<LeaveDto> teamLeaves = leaveService.getTeamLeaves(employee.getEmpId());
+                    org.springframework.data.domain.Page<LeaveDto> teamLeavesPage = leaveService.getTeamLeaves(employee.getEmpId(), 0, 100, "leaveId");
                     java.time.LocalDate today = java.time.LocalDate.now();
-                    long onLeaveCount = teamLeaves.stream()
+                    long onLeaveCount = teamLeavesPage.getContent().stream()
                             .filter(l -> "APPROVED".equals(l.getStatus()) && 
                                     !today.isBefore(l.getStartDate()) && !today.isAfter(l.getEndDate()))
                             .count();
@@ -131,7 +131,8 @@ public class DashboardController {
                     double totalBalance = balances.stream().mapToDouble(b -> b.getBalanceDays()).sum();
                     model.addAttribute("totalLeaveBalance", totalBalance);
                     
-                    List<PerformanceReviewDto> reviews = performanceService.getEmployeeReviews(employee.getEmpId());
+                    org.springframework.data.domain.Page<PerformanceReviewDto> reviewsPage = performanceService.getEmployeeReviews(employee.getEmpId(), 0, 100, "reviewId");
+                    List<PerformanceReviewDto> reviews = reviewsPage.getContent();
                     if (!reviews.isEmpty()) {
                         // Assuming reviews are ordered by year or ID, grab the latest one
                         PerformanceReviewDto latestReview = reviews.get(reviews.size() - 1);
@@ -142,5 +143,15 @@ public class DashboardController {
         }
 
         return "dashboard";
+    }
+
+    @GetMapping("/announcements")
+    public String announcements(
+            @org.springframework.web.bind.annotation.RequestParam(defaultValue = "0") int page,
+            @org.springframework.web.bind.annotation.RequestParam(defaultValue = "10") int size,
+            Model model) {
+        org.springframework.data.domain.Page<com.rev.app.dto.AnnouncementDto> announcementsPage = announcementService.getAllAnnouncements(page, size);
+        model.addAttribute("page", announcementsPage);
+        return "announcements";
     }
 }

@@ -25,6 +25,10 @@ public class PerformanceReview {
     @Lob
     private String improvements;
 
+    @Lob
+    @Column(name = "key_deliverables")
+    private String keyDeliverables;
+
     @Column(name = "self_rating", precision = 3, scale = 1)
     private BigDecimal selfRating;
 
@@ -40,12 +44,13 @@ public class PerformanceReview {
 
     public PerformanceReview() {}
 
-    public PerformanceReview(Long reviewId, Employee employee, Integer reviewYear, String achievements, String improvements, BigDecimal selfRating, BigDecimal managerRating, String managerFeedback, String status) {
+    public PerformanceReview(Long reviewId, Employee employee, Integer reviewYear, String achievements, String improvements, String keyDeliverables, BigDecimal selfRating, BigDecimal managerRating, String managerFeedback, String status) {
         this.reviewId = reviewId;
         this.employee = employee;
         this.reviewYear = reviewYear;
         this.achievements = achievements;
         this.improvements = improvements;
+        this.keyDeliverables = keyDeliverables;
         this.selfRating = selfRating;
         this.managerRating = managerRating;
         this.managerFeedback = managerFeedback;
@@ -62,6 +67,8 @@ public class PerformanceReview {
     public void setAchievements(String achievements) { this.achievements = achievements; }
     public String getImprovements() { return improvements; }
     public void setImprovements(String improvements) { this.improvements = improvements; }
+    public String getKeyDeliverables() { return keyDeliverables; }
+    public void setKeyDeliverables(String keyDeliverables) { this.keyDeliverables = keyDeliverables; }
     public BigDecimal getSelfRating() { return selfRating; }
     public void setSelfRating(BigDecimal selfRating) { this.selfRating = selfRating; }
     public BigDecimal getManagerRating() { return managerRating; }

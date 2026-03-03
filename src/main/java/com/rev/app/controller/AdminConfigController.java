@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -44,10 +45,17 @@ public class AdminConfigController {
     }
 
     @GetMapping("/departments/delete/{id}")
-    public String deleteDepartment(@PathVariable Long id, Principal principal) {
-        configService.deleteDepartment(id);
-        if (principal != null) {
-            configService.logActivity("DELETE_DEPARTMENT", principal.getName(), "Deleted department ID: " + id);
+    public String deleteDepartment(@PathVariable Long id, Principal principal, RedirectAttributes redirectAttributes) {
+        try {
+            configService.deleteDepartment(id);
+            if (principal != null) {
+                configService.logActivity("DELETE_DEPARTMENT", principal.getName(), "Deleted department ID: " + id);
+            }
+            redirectAttributes.addFlashAttribute("successMessage", "Department deleted successfully.");
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Cannot delete department: it is currently assigned to one or more employees or other records.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting the department.");
         }
         return "redirect:/admin/config/departments";
     }
@@ -70,18 +78,30 @@ public class AdminConfigController {
     }
 
     @GetMapping("/designations/delete/{id}")
-    public String deleteDesignation(@PathVariable Long id, Principal principal) {
-        configService.deleteDesignation(id);
-        if (principal != null) {
-            configService.logActivity("DELETE_DESIGNATION", principal.getName(), "Deleted designation ID: " + id);
+    public String deleteDesignation(@PathVariable Long id, Principal principal, RedirectAttributes redirectAttributes) {
+        try {
+            configService.deleteDesignation(id);
+            if (principal != null) {
+                configService.logActivity("DELETE_DESIGNATION", principal.getName(), "Deleted designation ID: " + id);
+            }
+            redirectAttributes.addFlashAttribute("successMessage", "Designation deleted successfully.");
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Cannot delete designation: it is currently assigned to one or more employees or other records.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting the designation.");
         }
         return "redirect:/admin/config/designations";
     }
 
     // Announcements
     @GetMapping("/announcements")
-    public String manageAnnouncements(Model model) {
-        model.addAttribute("announcements", announcementService.getAllAnnouncements());
+    public String manageAnnouncements(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            Model model) {
+        org.springframework.data.domain.Page<AnnouncementDto> announcementsPage = announcementService.getAllAnnouncements(page, size);
+        model.addAttribute("announcements", announcementsPage.getContent());
+        model.addAttribute("page", announcementsPage);
         model.addAttribute("newAnnouncement", new AnnouncementDto());
         return "admin/config/announcements";
     }

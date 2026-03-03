@@ -33,7 +33,7 @@ public class RegistrationController {
         model.addAttribute("registrationDto", new RegistrationDto());
         model.addAttribute("departments", configService.getAllDepartments());
         model.addAttribute("designations", configService.getAllDesignations());
-        model.addAttribute("managers", employeeService.getAllEmployees());
+        model.addAttribute("managers", employeeService.getAllEmployees(0, Integer.MAX_VALUE, "firstName").getContent());
         model.addAttribute("roles", User.Role.values());
         return "register";
     }
@@ -44,7 +44,7 @@ public class RegistrationController {
         if (result.hasErrors()) {
             model.addAttribute("departments", configService.getAllDepartments());
             model.addAttribute("designations", configService.getAllDesignations());
-            model.addAttribute("managers", employeeService.getAllEmployees());
+            model.addAttribute("managers", employeeService.getAllEmployees(0, Integer.MAX_VALUE, "firstName").getContent());
             model.addAttribute("roles", User.Role.values());
             return "register";
         }

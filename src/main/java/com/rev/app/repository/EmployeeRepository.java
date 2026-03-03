@@ -18,8 +18,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, String>, Jpa
     @Query("SELECT e FROM Employee e LEFT JOIN FETCH e.manager m LEFT JOIN FETCH m.user WHERE e.empId = :empId")
     Optional<Employee> findByIdWithManagerAndUser(@Param("empId") String empId);
 
-    @Query("SELECT e FROM Employee e WHERE e.manager.empId = :managerId")
+    @Query("SELECT e FROM Employee e WHERE e.manager.empId = :managerId AND e.user.isActive = 1")
     List<Employee> findByManagerId(@Param("managerId") String managerId);
+
+    @Query("SELECT e FROM Employee e WHERE e.manager.empId = :managerId")
+    List<Employee> findAllByManagerId(@Param("managerId") String managerId);
 
     Optional<Employee> findByUser_Email(String email);
 
@@ -30,7 +33,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, String>, Jpa
             "OR LOWER(e.empId) LIKE LOWER(CONCAT('%', :query, '%')) " +
             "OR LOWER(e.designation.designationName) LIKE LOWER(CONCAT('%', :query, '%')) " +
             "OR LOWER(e.department.departmentName) LIKE LOWER(CONCAT('%', :query, '%'))")
-    List<Employee> searchEmployees(@Param("query") String query);
+    org.springframework.data.domain.Page<Employee> searchEmployees(@Param("query") String query, org.springframework.data.domain.Pageable pageable);
 
     @Query("SELECT e.empId as empId, e.firstName as firstName, e.lastName as lastName FROM Employee e")
     List<EmployeeSummary> findAllSummaries();

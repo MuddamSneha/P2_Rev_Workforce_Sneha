@@ -38,14 +38,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String token = extractToken(request);
+        if (token != null) {
+            logger.debug("Extracted token present. Length: " + token.length() + 
+                         ", Prefix: " + (token.length() > 10 ? token.substring(0, 10) : token));
+        } else {
+            logger.debug("Extracted token: absent");
+        }
 
         if (StringUtils.hasText(token)) {
             try {
                 String username = jwtUtil.extractUsername(token);
+                logger.debug("Token username: " + username);
 
                 // Only set the authentication if not already authenticated
                 if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                    logger.debug("Loaded user: " + userDetails.getUsername() + " with authorities: " + userDetails.getAuthorities());
 
                     if (jwtUtil.validateToken(token, userDetails)) {
                         UsernamePasswordAuthenticationToken authToken =
@@ -56,12 +64,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                 );
                         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                         SecurityContextHolder.getContext().setAuthentication(authToken);
+                        logger.debug("Successfully authenticated " + username + " for " + request.getServletPath());
+                    } else {
+                        logger.warn("Token validation failed for user " + username);
                     }
                 }
             } catch (Exception ex) {
                 // Invalid token — do not set authentication; let the security chain return 401
-                logger.warn("JWT authentication failed: " + ex.getMessage());
+                logger.error("JWT authentication failed for path " + request.getServletPath() + ": " + ex.getMessage(), ex);
             }
+        } else {
+            logger.debug("No JWT token found in request for " + request.getServletPath());
         }
 
         filterChain.doFilter(request, response);
@@ -73,8 +86,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
      */
     private String extractToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7);
+        if (StringUtils.hasText(bearerToken)) {
+            // Case-insensitive check for "bearer "
+            if (bearerToken.regionMatches(true, 0, "Bearer ", 0, 7)) {
+                return bearerToken.substring(7).trim();
+            }
         }
         return null;
     }

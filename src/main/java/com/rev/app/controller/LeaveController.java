@@ -1,12 +1,14 @@
 package com.rev.app.controller;
 
 import com.rev.app.dto.LeaveDto;
+import com.rev.app.entity.HolidayCalendar;
 import com.rev.app.entity.User;
 import com.rev.app.service.EmployeeService;
 import com.rev.app.service.HolidayService;
 import com.rev.app.service.LeaveService;
 import com.rev.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,14 +33,20 @@ public class LeaveController {
     private UserService userService;
 
     @GetMapping
-    public String myLeaves(Model model, Principal principal) {
+    public String myLeaves(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "leaveId") String sortBy,
+            Model model, Principal principal) {
         if (principal != null) {
             String email = principal.getName();
             Optional<User> userOpt = userService.findByEmail(email);
             if (userOpt.isPresent()) {
                 com.rev.app.dto.EmployeeDto empDto = employeeService.getEmployeeByUserId(userOpt.get().getUserId());
                 if (empDto != null) {
-                    model.addAttribute("leaves", leaveService.getEmployeeLeaves(empDto.getEmpId()));
+                    org.springframework.data.domain.Page<LeaveDto> leavePage = leaveService.getEmployeeLeaves(empDto.getEmpId(), page, size, sortBy);
+                    model.addAttribute("leaves", leavePage.getContent());
+                    model.addAttribute("page", leavePage);
                     model.addAttribute("balances", leaveService.getLeaveBalances(empDto.getEmpId()));
                 }
             }
@@ -83,7 +91,29 @@ public class LeaveController {
     @GetMapping("/holidays")
     public String holidayCalendar(Model model) {
         model.addAttribute("holidays", holidayService.getAllHolidays());
+        model.addAttribute("newHoliday", new HolidayCalendar());
         return "leaves/holidays";
+    }
+
+    /**
+     * Admin-only: saves a new holiday and redirects back to the shared calendar
+     * so all users (including admin) immediately see the updated list.
+     */
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/holidays/save")
+    public String saveHolidayFromCalendar(@ModelAttribute HolidayCalendar holiday) {
+        holidayService.saveHoliday(holiday);
+        return "redirect:/leaves/holidays";
+    }
+
+    /**
+     * Admin-only: deletes a holiday and redirects back to the shared calendar.
+     */
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/holidays/delete/{id}")
+    public String deleteHolidayFromCalendar(@PathVariable Long id) {
+        holidayService.deleteHoliday(id);
+        return "redirect:/leaves/holidays";
     }
 }
 

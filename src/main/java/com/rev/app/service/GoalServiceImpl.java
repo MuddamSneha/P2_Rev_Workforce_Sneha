@@ -11,9 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class GoalServiceImpl implements GoalService {
 
@@ -57,9 +54,9 @@ public class GoalServiceImpl implements GoalService {
     }
 
     @Override
-    public List<GoalDto> getEmployeeGoals(String empId) {
-        return goalRepository.findByEmployee_EmpId(empId).stream()
-                .map(dtoMapper::toGoalDto)
-                .collect(Collectors.toList());
+    public org.springframework.data.domain.Page<GoalDto> getEmployeeGoals(String empId, int page, int size, String sortBy) {
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size, org.springframework.data.domain.Sort.by(sortBy));
+        return goalRepository.findByEmployee_EmpId(empId, pageable)
+                .map(dtoMapper::toGoalDto);
     }
 }

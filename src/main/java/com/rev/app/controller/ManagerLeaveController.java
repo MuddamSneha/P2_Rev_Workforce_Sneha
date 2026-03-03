@@ -34,7 +34,11 @@ public class ManagerLeaveController {
     private UserService userService;
 
     @GetMapping
-    public String viewTeamLeaves(Model model, Principal principal) {
+    public String viewTeamLeaves(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "leaveId") String sortBy,
+            Model model, Principal principal) {
         if (principal != null) {
             String email = principal.getName();
             Optional<User> userOpt = userService.findByEmail(email);
@@ -45,7 +49,7 @@ public class ManagerLeaveController {
                 } catch (Exception e) {}
                 if (manager != null) {
                     List<EmployeeDto> team = employeeService.getDirectReports(manager.getEmpId());
-                    List<LeaveDto> pendingLeaves = leaveService.getPendingLeavesForManager(manager.getEmpId());
+                    org.springframework.data.domain.Page<LeaveDto> pendingLeavesPage = leaveService.getPendingLeavesForManager(manager.getEmpId(), page, size, sortBy);
                     List<com.rev.app.entity.LeaveType> leaveTypes = leaveService.getAllLeaveTypes();
                     
                     Map<String, Map<Long, Integer>> teamBalancesMap = new HashMap<>();
@@ -59,7 +63,8 @@ public class ManagerLeaveController {
                     }
 
                     model.addAttribute("team", team);
-                    model.addAttribute("pendingLeaves", pendingLeaves);
+                    model.addAttribute("pendingLeaves", pendingLeavesPage.getContent());
+                    model.addAttribute("pendingPage", pendingLeavesPage);
                     model.addAttribute("teamBalancesMap", teamBalancesMap);
                     model.addAttribute("leaveTypes", leaveTypes);
                 }
@@ -108,7 +113,11 @@ public class ManagerLeaveController {
     }
 
     @GetMapping("/calendar")
-    public String viewTeamCalendar(Model model, Principal principal) {
+    public String viewTeamCalendar(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "leaveId") String sortBy,
+            Model model, Principal principal) {
         if (principal != null) {
             String email = principal.getName();
             Optional<User> userOpt = userService.findByEmail(email);
@@ -118,8 +127,9 @@ public class ManagerLeaveController {
                     manager = employeeService.getEmployeeByUserId(userOpt.get().getUserId());
                 } catch (Exception e) {}
                 if (manager != null) {
-                    List<LeaveDto> teamLeaves = leaveService.getTeamLeaves(manager.getEmpId());
-                    model.addAttribute("teamLeaves", teamLeaves);
+                    org.springframework.data.domain.Page<LeaveDto> teamLeavesPage = leaveService.getTeamLeaves(manager.getEmpId(), page, size, sortBy);
+                    model.addAttribute("teamLeaves", teamLeavesPage.getContent());
+                    model.addAttribute("page", teamLeavesPage);
                 }
             }
         }

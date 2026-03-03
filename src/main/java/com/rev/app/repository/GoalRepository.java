@@ -4,11 +4,9 @@ import com.rev.app.entity.Goal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface GoalRepository extends JpaRepository<Goal, Long> {
-    List<Goal> findByEmployee_EmpId(String empId);
+    org.springframework.data.domain.Page<Goal> findByEmployee_EmpId(String empId, org.springframework.data.domain.Pageable pageable);
 
-    List<Goal> findByEmployee_Manager_EmpId(String managerId);
+    org.springframework.data.domain.Page<Goal> findByEmployee_Manager_EmpId(String managerId, org.springframework.data.domain.Pageable pageable);
 }

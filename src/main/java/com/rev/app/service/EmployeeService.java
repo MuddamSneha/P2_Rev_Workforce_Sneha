@@ -13,9 +13,9 @@ public interface EmployeeService {
 
     EmployeeDto getEmployeeByUserId(Long userId);
 
-    List<EmployeeDto> getAllEmployees();
+    org.springframework.data.domain.Page<EmployeeDto> getAllEmployees(int page, int size, String sortBy);
 
-    List<EmployeeDto> searchEmployees(String query);
+    org.springframework.data.domain.Page<EmployeeDto> searchEmployees(String query, int page, int size, String sortBy);
 
     List<EmployeeDto> getDirectReports(String managerId);
 

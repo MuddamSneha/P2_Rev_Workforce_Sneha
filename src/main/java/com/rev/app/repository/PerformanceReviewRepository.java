@@ -4,11 +4,9 @@ import com.rev.app.entity.PerformanceReview;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface PerformanceReviewRepository extends JpaRepository<PerformanceReview, Long> {
-    List<PerformanceReview> findByEmployee_EmpId(String empId);
+    org.springframework.data.domain.Page<PerformanceReview> findByEmployee_EmpId(String empId, org.springframework.data.domain.Pageable pageable);
 
-    List<PerformanceReview> findByEmployee_Manager_EmpId(String managerId);
+    org.springframework.data.domain.Page<PerformanceReview> findByEmployee_Manager_EmpId(String managerId, org.springframework.data.domain.Pageable pageable);
 }
