@@ -1,0 +1,658 @@
+2026-03-03T00:34:58.054+05:30  INFO 22000 --- [P2_Rev_Workforce] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 96 class path changes (0 additions, 96 deletions, 0 modifications)
+2026-03-03T00:34:59.330+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-53] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-03T00:34:59.980+05:30  INFO 22000 --- [P2_Rev_Workforce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-03-03T00:35:00.188+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-53] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T00:35:00.320+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-53] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown initiated...
+2026-03-03T00:35:00.414+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-53] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown completed.
+2026-03-03T00:35:02.126+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Starting P2RevWorkforceApplication using Java 25.0.2 with PID 22000 (C:\P2_Rev_Workforce\P2_Rev_Workforce\target\classes started by Muddam Sneha in C:\P2_Rev_Workforce\P2_Rev_Workforce)
+2026-03-03T00:35:02.128+05:30 DEBUG 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2026-03-03T00:35:02.128+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T00:35:08.016+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T00:35:08.160+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 134 ms. Found 13 JPA repository interfaces.
+2026-03-03T00:35:09.326+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-03T00:35:09.336+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T00:35:09.336+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-03T00:35:09.400+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-03-03T00:35:09.406+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7149 ms
+2026-03-03T00:35:09.938+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-03T00:35:09.950+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-03T00:35:10.005+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T00:35:10.011+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Starting...
+2026-03-03T00:35:10.291+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-14 - Added connection oracle.jdbc.driver.T4CConnection@74a33160
+2026-03-03T00:35:10.294+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Start completed.
+2026-03-03T00:35:10.301+05:30  WARN 22000 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-03T00:35:10.318+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-14)']
+	Database driver: undefined/unknown
+	Database version: 21.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-03T00:35:12.132+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T00:35:13.116+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T00:35:14.201+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.boot.web.servlet.RegistrationBean    : Filter jwtFilterRegistration was not registered (disabled)
+2026-03-03T00:35:15.424+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-03-03T00:35:15.424+05:30  WARN 22000 --- [P2_Rev_Workforce] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-03T00:35:15.660+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-03-03T00:35:16.384+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-03-03T00:35:17.189+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@//localhost:1522/xepdb1'
+2026-03-03T00:35:17.334+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-03-03T00:35:17.383+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-03-03T00:35:17.399+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Started P2RevWorkforceApplication in 16.677 seconds (process running for 13525.689)
+2026-03-03T00:35:17.484+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-03-03T00:35:17.489+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking and fixing manager assignments...
+2026-03-03T00:35:17.526+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: all employees already have managers. No changes needed.
+2026-03-03T00:35:17.526+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking for missing seed notifications...
+2026-03-03T00:39:38.889+05:30  INFO 22000 --- [P2_Rev_Workforce] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 96 class path changes (0 additions, 96 deletions, 0 modifications)
+2026-03-03T00:39:38.889+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-57] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-03T00:39:38.906+05:30  INFO 22000 --- [P2_Rev_Workforce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-03-03T00:39:38.915+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-57] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T00:39:38.915+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-57] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Shutdown initiated...
+2026-03-03T00:39:38.934+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-57] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Shutdown completed.
+2026-03-03T00:39:39.942+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Starting P2RevWorkforceApplication using Java 25.0.2 with PID 22000 (C:\P2_Rev_Workforce\P2_Rev_Workforce\target\classes started by Muddam Sneha in C:\P2_Rev_Workforce\P2_Rev_Workforce)
+2026-03-03T00:39:39.942+05:30 DEBUG 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2026-03-03T00:39:39.950+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T00:39:40.888+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T00:39:40.900+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+2026-03-03T00:39:41.534+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-03T00:39:41.540+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T00:39:41.544+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-03T00:39:41.627+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-03-03T00:39:41.630+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1672 ms
+2026-03-03T00:39:42.502+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-03T00:39:42.510+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-03T00:39:42.534+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T00:39:42.537+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Starting...
+2026-03-03T00:39:42.630+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-15 - Added connection oracle.jdbc.driver.T4CConnection@31b87a34
+2026-03-03T00:39:42.634+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Start completed.
+2026-03-03T00:39:42.639+05:30  WARN 22000 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-03T00:39:42.639+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-15)']
+	Database driver: undefined/unknown
+	Database version: 21.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-03T00:39:43.261+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T00:39:43.744+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T00:39:43.903+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-03-03T00:39:44.725+05:30  WARN 22000 --- [P2_Rev_Workforce] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 5e6ee3ad-09bb-4b62-affa-49dae39bcf3c
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-03-03T00:39:44.749+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-03-03T00:39:44.949+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-03-03T00:39:45.152+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@//localhost:1522/xepdb1'
+2026-03-03T00:39:45.334+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-03-03T00:39:45.364+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-03-03T00:39:45.383+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Started P2RevWorkforceApplication in 5.783 seconds (process running for 13793.674)
+2026-03-03T00:39:45.383+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   ManagementWebSecurityAutoConfiguration matched:
+      - found 'session' scope (OnWebApplicationCondition)
+      - AllNestedConditions 2 matched 0 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) did not find any beans; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   SpringBootWebSecurityConfiguration.WebSecurityEnablerConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
+      - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   UserDetailsServiceAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - AnyNestedCondition 1 matched 2 did not; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.PasswordConfigured @ConditionalOnProperty (spring.security.user.password) did not find property 'password'; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.NameConfigured @ConditionalOnProperty (spring.security.user.name) did not find property 'name'; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.MissingAlternative @ConditionalOnMissingClass did not find unwanted classes 'org.springframework.security.oauth2.client.registration.ClientRegistrationRepository', 'org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector', 'org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistrationRepository' (UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured)
+      - @ConditionalOnBean (types: org.springframework.security.config.ObjectPostProcessor; SearchStrategy: all) found beans 'objectPostProcessor', 'webAuthorizationManagerPostProcessor', 'filterChainDecoratorPostProcessor', 'authenticationManagerPostProcessor'; @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.authentication.AuthenticationManagerResolver,org.springframework.security.oauth2.jwt.JwtDecoder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2026-03-03T00:45:46.992+05:30  INFO 22000 --- [P2_Rev_Workforce] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 4 class path changes (0 additions, 4 deletions, 0 modifications)
+2026-03-03T00:45:46.999+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-61] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-03T00:45:47.008+05:30  INFO 22000 --- [P2_Rev_Workforce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-03-03T00:45:47.011+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-61] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T00:45:47.014+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-61] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown initiated...
+2026-03-03T00:45:47.037+05:30  INFO 22000 --- [P2_Rev_Workforce] [Thread-61] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown completed.
+2026-03-03T00:45:47.185+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Starting P2RevWorkforceApplication using Java 25.0.2 with PID 22000 (C:\P2_Rev_Workforce\P2_Rev_Workforce\target\classes started by Muddam Sneha in C:\P2_Rev_Workforce\P2_Rev_Workforce)
+2026-03-03T00:45:47.185+05:30 DEBUG 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2026-03-03T00:45:47.185+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T00:45:47.727+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T00:45:47.799+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70 ms. Found 13 JPA repository interfaces.
+2026-03-03T00:45:48.139+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-03T00:45:48.142+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T00:45:48.142+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-03T00:45:48.176+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-03-03T00:45:48.176+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 987 ms
+2026-03-03T00:45:48.312+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-03T00:45:48.319+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-03T00:45:48.337+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T00:45:48.339+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Starting...
+2026-03-03T00:45:48.430+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-16 - Added connection oracle.jdbc.driver.T4CConnection@6431da9d
+2026-03-03T00:45:48.431+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Start completed.
+2026-03-03T00:45:48.435+05:30  WARN 22000 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-03T00:45:48.438+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-16)']
+	Database driver: undefined/unknown
+	Database version: 21.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-03T00:45:48.763+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T00:45:57.351+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T00:45:57.655+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.boot.web.servlet.RegistrationBean    : Filter jwtFilterRegistration was not registered (disabled)
+2026-03-03T00:45:57.930+05:30  WARN 22000 --- [P2_Rev_Workforce] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminConfigController': Unsatisfied dependency expressed through field 'announcementService': Error creating bean with name 'announcementServiceImpl': Unsatisfied dependency expressed through field 'dtoMapper': Error creating bean with name 'DTOMapper': Lookup method resolution failed
+2026-03-03T00:45:57.931+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T00:45:57.931+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Shutdown initiated...
+2026-03-03T00:45:57.952+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Shutdown completed.
+2026-03-03T00:45:57.955+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-03-03T00:45:57.957+05:30  WARN 22000 --- [P2_Rev_Workforce] [restartedMain] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [OJDBC-WORKER-THREAD-14] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:408)
+ java.base/java.util.concurrent.LinkedTransferQueue$DualNode.await(LinkedTransferQueue.java:452)
+ java.base/java.util.concurrent.SynchronousQueue$Transferer.xferLifo(SynchronousQueue.java:194)
+ java.base/java.util.concurrent.SynchronousQueue.xfer(SynchronousQueue.java:235)
+ java.base/java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:338)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1015)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1076)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+ java.base/java.lang.Thread.run(Thread.java:1474)
+2026-03-03T00:45:57.969+05:30  INFO 22000 --- [P2_Rev_Workforce] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-03-03T00:45:57.976+05:30 ERROR 22000 --- [P2_Rev_Workforce] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminConfigController': Unsatisfied dependency expressed through field 'announcementService': Error creating bean with name 'announcementServiceImpl': Unsatisfied dependency expressed through field 'dtoMapper': Error creating bean with name 'DTOMapper': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1445) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.3.jar:6.2.3]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.3.jar:6.2.3]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.3.jar:3.4.3]
+	at com.rev.app.P2RevWorkforceApplication.main(P2RevWorkforceApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.4.3.jar:3.4.3]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'announcementServiceImpl': Unsatisfied dependency expressed through field 'dtoMapper': Error creating bean with name 'DTOMapper': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1445) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 25 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'DTOMapper': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:498) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:368) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1320) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1215) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 39 common frames omitted
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.rev.app.mapper.DTOMapper] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@1e16261c]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.2.3.jar:6.2.3]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:476) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 52 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/rev/app/dto/EmployeeDto
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3010) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2329) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.2.3.jar:6.2.3]
+	... 54 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.rev.app.dto.EmployeeDto
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:580) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490) ~[na:na]
+	at java.base/java.lang.Class.forName0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.forName(Class.java:547) ~[na:na]
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121) ~[spring-boot-devtools-3.4.3.jar:3.4.3]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490) ~[na:na]
+	... 58 common frames omitted
+
+2026-03-03T00:47:12.878+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Starting P2RevWorkforceApplication using Java 25.0.2 with PID 17436 (C:\P2_Rev_Workforce\P2_Rev_Workforce\target\classes started by Muddam Sneha in C:\P2_Rev_Workforce\P2_Rev_Workforce)
+2026-03-03T00:47:12.882+05:30 DEBUG 17436 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2026-03-03T00:47:12.884+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T00:47:12.995+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\Madhusudan\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.5.0.24.07\ojdbc11-23.5.0.24.07.jar referenced one or more files that do not exist: file:/C:/Users/Madhusudan/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/oraclepki.jar
+2026-03-03T00:47:12.996+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-03-03T00:47:12.997+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-03-03T00:47:15.236+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T00:47:15.504+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 247 ms. Found 13 JPA repository interfaces.
+2026-03-03T00:47:17.666+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-03T00:47:17.708+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T00:47:17.709+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-03T00:47:17.826+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-03T00:47:17.827+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4829 ms
+2026-03-03T00:47:18.773+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-03T00:47:19.046+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-03T00:47:19.133+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-03T00:47:19.790+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T00:47:19.840+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-03T00:47:20.742+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@3b2881b5
+2026-03-03T00:47:20.749+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-03T00:47:21.186+05:30  WARN 17436 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-03T00:47:21.496+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 21.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-03T00:47:24.455+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T00:47:25.720+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T00:47:26.960+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.s.boot.web.servlet.RegistrationBean    : Filter jwtFilterRegistration was not registered (disabled)
+2026-03-03T00:47:27.122+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-03T00:47:30.839+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-03-03T00:47:30.840+05:30  WARN 17436 --- [P2_Rev_Workforce] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-03T00:47:31.148+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-03-03T00:47:31.865+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-03-03T00:47:32.708+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@//localhost:1522/xepdb1'
+2026-03-03T00:47:33.059+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-03-03T00:47:33.299+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-03-03T00:47:33.338+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Started P2RevWorkforceApplication in 21.374 seconds (process running for 22.364)
+2026-03-03T00:47:33.651+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking and fixing manager assignments...
+2026-03-03T00:47:33.720+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: all employees already have managers. No changes needed.
+2026-03-03T00:47:33.720+05:30  INFO 17436 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking for missing seed notifications...
+2026-03-03T00:47:41.874+05:30  INFO 17436 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-03T00:47:41.875+05:30  INFO 17436 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-03T00:47:41.878+05:30  INFO 17436 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-03-03T00:48:54.592+05:30  INFO 17436 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-03T00:48:54.623+05:30  INFO 17436 --- [P2_Rev_Workforce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-03-03T00:48:54.638+05:30  INFO 17436 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T00:48:54.643+05:30  INFO 17436 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-03-03T00:48:54.665+05:30  INFO 17436 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-03-03T09:20:39.436+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Starting P2RevWorkforceApplication using Java 25.0.2 with PID 18696 (C:\P2_Rev_Workforce\P2_Rev_Workforce\target\classes started by Muddam Sneha in C:\P2_Rev_Workforce\P2_Rev_Workforce)
+2026-03-03T09:20:39.437+05:30 DEBUG 18696 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2026-03-03T09:20:39.438+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T09:20:39.473+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\Madhusudan\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.5.0.24.07\ojdbc11-23.5.0.24.07.jar referenced one or more files that do not exist: file:/C:/Users/Madhusudan/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/oraclepki.jar
+2026-03-03T09:20:39.473+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-03-03T09:20:39.473+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-03-03T09:20:40.311+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T09:20:40.398+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 13 JPA repository interfaces.
+2026-03-03T09:20:41.060+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-03T09:20:41.078+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T09:20:41.079+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-03T09:20:41.113+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-03T09:20:41.114+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1640 ms
+2026-03-03T09:20:41.355+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-03T09:20:41.405+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-03T09:20:41.432+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-03T09:20:41.676+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T09:20:41.700+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-03T09:20:41.994+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@79b77d6a
+2026-03-03T09:20:41.995+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-03T09:20:42.108+05:30  WARN 18696 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-03T09:20:42.185+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 21.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-03T09:20:43.081+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T09:20:43.706+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T09:20:44.094+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.s.boot.web.servlet.RegistrationBean    : Filter jwtFilterRegistration was not registered (disabled)
+2026-03-03T09:20:44.181+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-03T09:20:45.375+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-03-03T09:20:45.375+05:30  WARN 18696 --- [P2_Rev_Workforce] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-03T09:20:45.488+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-03-03T09:20:45.810+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-03-03T09:20:46.198+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@//localhost:1522/xepdb1'
+2026-03-03T09:20:46.276+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-03-03T09:20:46.331+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-03-03T09:20:46.340+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Started P2RevWorkforceApplication in 7.353 seconds (process running for 7.868)
+2026-03-03T09:20:46.452+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking and fixing manager assignments...
+2026-03-03T09:20:46.482+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: all employees already have managers. No changes needed.
+2026-03-03T09:20:46.482+05:30  INFO 18696 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking for missing seed notifications...
+2026-03-03T09:20:56.303+05:30  INFO 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-03T09:20:56.303+05:30  INFO 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-03T09:20:56.305+05:30  INFO 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-03-03T09:21:05.766+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:09.134+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:11.332+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:14.738+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:15.718+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:15.919+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:16.089+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:16.266+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:16.441+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:16.590+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:16.806+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:16.918+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:20.319+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:22.821+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:23.599+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:23.809+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:24.037+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:28.848+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:53.193+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:21:59.916+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 2292, SQLState: 23000
+2026-03-03T09:21:59.916+05:30 ERROR 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : ORA-02292: integrity constraint (REVWORKFORCE_2.FK5VD2YCO7EN4NGUYI0JGUDGJEY) violated - child record found
+
+https://docs.oracle.com/error-help/db/ora-02292/
+2026-03-03T09:21:59.932+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [ORA-02292: integrity constraint (REVWORKFORCE_2.FK5VD2YCO7EN4NGUYI0JGUDGJEY) violated - child record found<EOL><EOL><EOL>https://docs.oracle.com/error-help/db/ora-02292/] [delete from designation where designation_id=?]; SQL [delete from designation where designation_id=?]; constraint [REVWORKFORCE_2.FK5VD2YCO7EN4NGUYI0JGUDGJEY]]
+2026-03-03T09:21:59.964+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:24:58.798+05:30  WARN 18696 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:39:09.520+05:30  INFO 18696 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-03T09:39:09.528+05:30  INFO 18696 --- [P2_Rev_Workforce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-03-03T09:39:09.536+05:30  INFO 18696 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T09:39:09.540+05:30  INFO 18696 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-03-03T09:39:09.560+05:30  INFO 18696 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-03-03T09:39:15.575+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Starting P2RevWorkforceApplication using Java 25.0.2 with PID 16604 (C:\P2_Rev_Workforce\P2_Rev_Workforce\target\classes started by Muddam Sneha in C:\P2_Rev_Workforce\P2_Rev_Workforce)
+2026-03-03T09:39:15.577+05:30 DEBUG 16604 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2026-03-03T09:39:15.578+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T09:39:15.622+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\Madhusudan\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.5.0.24.07\ojdbc11-23.5.0.24.07.jar referenced one or more files that do not exist: file:/C:/Users/Madhusudan/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/oraclepki.jar
+2026-03-03T09:39:15.622+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-03-03T09:39:15.622+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-03-03T09:39:16.515+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T09:39:16.607+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 13 JPA repository interfaces.
+2026-03-03T09:39:17.232+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-03T09:39:17.243+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T09:39:17.244+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-03T09:39:17.279+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-03T09:39:17.279+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1656 ms
+2026-03-03T09:39:17.510+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-03T09:39:17.564+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-03T09:39:17.593+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-03T09:39:17.818+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T09:39:17.850+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-03T09:39:18.195+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@31952d02
+2026-03-03T09:39:18.197+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-03T09:39:18.323+05:30  WARN 16604 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-03T09:39:18.400+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 21.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-03T09:39:19.378+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T09:39:20.025+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T09:39:20.412+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.s.boot.web.servlet.RegistrationBean    : Filter jwtFilterRegistration was not registered (disabled)
+2026-03-03T09:39:20.503+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-03T09:39:21.798+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-03-03T09:39:21.798+05:30  WARN 16604 --- [P2_Rev_Workforce] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-03T09:39:21.918+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-03-03T09:39:22.229+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-03-03T09:39:22.635+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@//localhost:1522/xepdb1'
+2026-03-03T09:39:22.716+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-03-03T09:39:22.777+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-03-03T09:39:22.786+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Started P2RevWorkforceApplication in 7.614 seconds (process running for 8.081)
+2026-03-03T09:39:22.913+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking and fixing manager assignments...
+2026-03-03T09:39:22.946+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: all employees already have managers. No changes needed.
+2026-03-03T09:39:22.947+05:30  INFO 16604 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking for missing seed notifications...
+2026-03-03T09:39:31.088+05:30  INFO 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-03T09:39:31.088+05:30  INFO 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-03T09:39:31.091+05:30  INFO 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-03-03T09:39:32.362+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:39:43.837+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:39:52.116+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:39:59.664+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:54:36.369+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:54:54.794+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:55:01.093+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:55:09.033+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:55:11.627+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:56:18.771+05:30 DEBUG 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] com.rev.app.service.LeaveServiceImpl     : Leave saved with ID: 41
+2026-03-03T09:56:18.772+05:30 DEBUG 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] com.rev.app.service.LeaveServiceImpl     : Employee: varsha (RW345), Manager: RW789
+2026-03-03T09:56:18.772+05:30 DEBUG 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] com.rev.app.service.LeaveServiceImpl     : Sending notification to manager userId: 15
+2026-03-03T09:56:18.794+05:30 DEBUG 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] com.rev.app.service.LeaveServiceImpl     : Notification sent successfully
+2026-03-03T09:56:19.000+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:56:34.166+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T09:56:39.001+05:30  WARN 16604 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T10:16:57.445+05:30  INFO 16604 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-03T10:16:57.453+05:30  INFO 16604 --- [P2_Rev_Workforce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-03-03T10:16:57.467+05:30  INFO 16604 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T10:16:57.471+05:30  INFO 16604 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-03-03T10:16:57.491+05:30  INFO 16604 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-03-03T13:10:37.574+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Starting P2RevWorkforceApplication using Java 25.0.2 with PID 19428 (C:\P2_Rev_Workforce\P2_Rev_Workforce\target\classes started by Muddam Sneha in C:\P2_Rev_Workforce\P2_Rev_Workforce)
+2026-03-03T13:10:37.576+05:30 DEBUG 19428 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2026-03-03T13:10:37.578+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T13:10:37.641+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\Madhusudan\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.5.0.24.07\ojdbc11-23.5.0.24.07.jar referenced one or more files that do not exist: file:/C:/Users/Madhusudan/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/oraclepki.jar
+2026-03-03T13:10:37.641+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-03-03T13:10:37.641+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-03-03T13:10:38.687+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T13:10:38.791+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95 ms. Found 13 JPA repository interfaces.
+2026-03-03T13:10:39.611+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-03T13:10:39.626+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T13:10:39.627+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-03T13:10:39.664+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-03T13:10:39.665+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2024 ms
+2026-03-03T13:10:39.914+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-03T13:10:39.969+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-03T13:10:40.001+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-03T13:10:40.271+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T13:10:40.300+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-03T13:10:40.679+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@69f2dcb5
+2026-03-03T13:10:40.681+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-03T13:10:40.807+05:30  WARN 19428 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-03T13:10:40.920+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 21.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-03T13:10:41.902+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T13:10:42.886+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T13:10:43.323+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.s.boot.web.servlet.RegistrationBean    : Filter jwtFilterRegistration was not registered (disabled)
+2026-03-03T13:10:43.408+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-03T13:10:44.770+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-03-03T13:10:44.771+05:30  WARN 19428 --- [P2_Rev_Workforce] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-03T13:10:44.919+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-03-03T13:10:45.213+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-03-03T13:10:45.645+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@//localhost:1522/xepdb1'
+2026-03-03T13:10:45.750+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-03-03T13:10:45.811+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-03-03T13:10:45.820+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Started P2RevWorkforceApplication in 8.816 seconds (process running for 9.387)
+2026-03-03T13:10:45.951+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking and fixing manager assignments...
+2026-03-03T13:10:45.977+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: all employees already have managers. No changes needed.
+2026-03-03T13:10:45.977+05:30  INFO 19428 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking for missing seed notifications...
+2026-03-03T13:10:55.250+05:30  INFO 19428 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-03T13:10:55.251+05:30  INFO 19428 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-03T13:10:55.256+05:30  INFO 19428 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2026-03-03T13:11:29.668+05:30  WARN 19428 --- [P2_Rev_Workforce] [http-nio-8081-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T13:11:33.392+05:30  WARN 19428 --- [P2_Rev_Workforce] [http-nio-8081-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T13:11:35.845+05:30  WARN 19428 --- [P2_Rev_Workforce] [http-nio-8081-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T13:33:33.684+05:30  WARN 19428 --- [P2_Rev_Workforce] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=14m49s246ms754µs900ns).
+2026-03-03T13:35:49.005+05:30  WARN 19428 --- [P2_Rev_Workforce] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m15s321ms378µs400ns).
+2026-03-03T14:11:55.504+05:30  WARN 19428 --- [P2_Rev_Workforce] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=33m58s639ms119µs).
+2026-03-03T14:17:54.303+05:30  INFO 19428 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-03T14:17:54.314+05:30  INFO 19428 --- [P2_Rev_Workforce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-03-03T14:17:54.326+05:30  INFO 19428 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T14:17:54.330+05:30  INFO 19428 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-03-03T14:17:54.341+05:30  INFO 19428 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-03-03T14:18:05.538+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Starting P2RevWorkforceApplication using Java 25.0.2 with PID 15760 (C:\P2_Rev_Workforce\P2_Rev_Workforce\target\classes started by Muddam Sneha in C:\P2_Rev_Workforce\P2_Rev_Workforce)
+2026-03-03T14:18:05.539+05:30 DEBUG 15760 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2026-03-03T14:18:05.539+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T14:18:05.570+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\Madhusudan\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.5.0.24.07\ojdbc11-23.5.0.24.07.jar referenced one or more files that do not exist: file:/C:/Users/Madhusudan/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/oraclepki.jar
+2026-03-03T14:18:05.570+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-03-03T14:18:05.570+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-03-03T14:18:06.486+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T14:18:06.555+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 13 JPA repository interfaces.
+2026-03-03T14:18:07.141+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-03T14:18:07.154+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T14:18:07.154+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-03T14:18:07.189+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-03T14:18:07.189+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1618 ms
+2026-03-03T14:18:07.413+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-03T14:18:07.462+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-03T14:18:07.489+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-03T14:18:07.694+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T14:18:07.722+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-03T14:18:08.005+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@6357c494
+2026-03-03T14:18:08.007+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-03T14:18:08.107+05:30  WARN 15760 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-03T14:18:08.175+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 21.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-03T14:18:09.104+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T14:18:12.573+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T14:18:12.919+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.s.boot.web.servlet.RegistrationBean    : Filter jwtFilterRegistration was not registered (disabled)
+2026-03-03T14:18:13.004+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-03T14:18:14.141+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-03-03T14:18:14.143+05:30  WARN 15760 --- [P2_Rev_Workforce] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-03T14:18:14.246+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-03-03T14:18:14.500+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-03-03T14:18:14.845+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@//localhost:1522/xepdb1'
+2026-03-03T14:18:14.938+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-03-03T14:18:14.990+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-03-03T14:18:14.999+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Started P2RevWorkforceApplication in 9.757 seconds (process running for 17.322)
+2026-03-03T14:18:15.129+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking and fixing manager assignments...
+2026-03-03T14:18:15.156+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: all employees already have managers. No changes needed.
+2026-03-03T14:18:15.156+05:30  INFO 15760 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking for missing seed notifications...
+2026-03-03T14:18:22.531+05:30  INFO 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-03T14:18:22.531+05:30  INFO 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-03T14:18:22.533+05:30  INFO 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-03-03T14:18:32.118+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:18:35.734+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:18:38.822+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:18:45.643+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:19:04.461+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:19:22.111+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1407, SQLState: 72000
+2026-03-03T14:19:22.111+05:30 ERROR 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : ORA-01407: cannot update ("REVWORKFORCE_2"."EMPLOYEE"."JOINING_DATE") to NULL
+
+https://docs.oracle.com/error-help/db/ora-01407/
+2026-03-03T14:19:22.122+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [ORA-01407: cannot update ("REVWORKFORCE_2"."EMPLOYEE"."JOINING_DATE") to NULL<EOL><EOL><EOL>https://docs.oracle.com/error-help/db/ora-01407/] [update employee set address=?,department_id=?,designation_id=?,dob=?,emergency_contact=?,first_name=?,joining_date=?,last_name=?,manager_id=?,phone=?,salary=?,ss_id=?,user_id=? where emp_id=?]; SQL [update employee set address=?,department_id=?,designation_id=?,dob=?,emergency_contact=?,first_name=?,joining_date=?,last_name=?,manager_id=?,phone=?,salary=?,ss_id=?,user_id=? where emp_id=?]; constraint [null]]
+2026-03-03T14:19:22.166+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:20:12.419+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:22:24.973+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:22:26.399+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:22:26.943+05:30  WARN 15760 --- [P2_Rev_Workforce] [http-nio-8081-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:22:32.002+05:30  INFO 15760 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-03T14:22:32.023+05:30  INFO 15760 --- [P2_Rev_Workforce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-03-03T14:22:32.035+05:30  INFO 15760 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T14:22:32.042+05:30  INFO 15760 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-03-03T14:22:32.069+05:30  INFO 15760 --- [P2_Rev_Workforce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-03-03T14:22:37.799+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Starting P2RevWorkforceApplication using Java 25.0.2 with PID 22180 (C:\P2_Rev_Workforce\P2_Rev_Workforce\target\classes started by Muddam Sneha in C:\P2_Rev_Workforce\P2_Rev_Workforce)
+2026-03-03T14:22:37.801+05:30 DEBUG 22180 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2026-03-03T14:22:37.802+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-03-03T14:22:37.872+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\Madhusudan\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.5.0.24.07\ojdbc11-23.5.0.24.07.jar referenced one or more files that do not exist: file:/C:/Users/Madhusudan/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/oraclepki.jar
+2026-03-03T14:22:37.872+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-03-03T14:22:37.872+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-03-03T14:22:39.077+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-03T14:22:39.186+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 13 JPA repository interfaces.
+2026-03-03T14:22:40.146+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-03T14:22:40.160+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-03T14:22:40.161+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-03T14:22:40.207+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-03T14:22:40.207+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2335 ms
+2026-03-03T14:22:40.516+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-03T14:22:40.569+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-03T14:22:40.600+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-03T14:22:40.875+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-03T14:22:40.903+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-03T14:22:41.264+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@5b63685c
+2026-03-03T14:22:41.266+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-03T14:22:41.411+05:30  WARN 22180 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-03T14:22:41.511+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 21.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-03T14:22:42.805+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-03T14:22:43.500+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-03T14:22:44.176+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.s.boot.web.servlet.RegistrationBean    : Filter jwtFilterRegistration was not registered (disabled)
+2026-03-03T14:22:44.301+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-03T14:22:46.154+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-03-03T14:22:46.155+05:30  WARN 22180 --- [P2_Rev_Workforce] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-03T14:22:46.347+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-03-03T14:22:46.716+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-03-03T14:22:47.244+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@//localhost:1522/xepdb1'
+2026-03-03T14:22:47.367+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-03-03T14:22:47.446+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-03-03T14:22:47.462+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.P2RevWorkforceApplication    : Started P2RevWorkforceApplication in 10.203 seconds (process running for 10.851)
+2026-03-03T14:22:47.614+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking and fixing manager assignments...
+2026-03-03T14:22:47.649+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: all employees already have managers. No changes needed.
+2026-03-03T14:22:47.650+05:30  INFO 22180 --- [P2_Rev_Workforce] [restartedMain] com.rev.app.config.StartupDataFixer      : StartupDataFixer: checking for missing seed notifications...
+2026-03-03T14:22:52.454+05:30  INFO 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-03T14:22:52.454+05:30  INFO 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-03T14:22:52.459+05:30  INFO 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-03-03T14:22:53.707+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:22:58.175+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:23:32.343+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:24:18.722+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:24:22.766+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:24:34.653+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:24:40.761+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:24:42.747+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:24:58.570+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:25:01.673+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:25:22.913+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:26:13.117+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:26:28.262+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:26:30.534+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:27:29.650+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2026-03-03T14:29:40.729+05:30  WARN 22180 --- [P2_Rev_Workforce] [http-nio-8081-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
